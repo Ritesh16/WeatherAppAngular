@@ -10,7 +10,17 @@
       "ProjectGuid": "5fc2713b-63a8-452e-a1e7-4d67ae7cd478",
       "DisplayName": "WeatherApplication",
       "ColorIndex": 1
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "04c8401d-52fe-4c0c-9307-70a0e5119664": {
+      "ProjectGuid": "04c8401d-52fe-4c0c-9307-70a0e5119664",
+      "DisplayName": "WeatherAPI",
+      "ColorIndex": 2
     }
   },
-  "NextColorIndex": 2
+  "NextColorIndex": 3
 }
