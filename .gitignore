@@ -4,3 +4,6 @@ WeatherAPI/Obj
 .vs/WeatherApplication
 Data/obj
 Data/bin
+CustomActivity/obj
+CustomActivity/bin
+packages

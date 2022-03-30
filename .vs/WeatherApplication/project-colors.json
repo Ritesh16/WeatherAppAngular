@@ -20,7 +20,17 @@
       "ProjectGuid": "04c8401d-52fe-4c0c-9307-70a0e5119664",
       "DisplayName": "WeatherAPI",
       "ColorIndex": 2
+    },
+    "d3f99744-c3ca-4042-b541-5c5b9fd56d9f": {
+      "ProjectGuid": "d3f99744-c3ca-4042-b541-5c5b9fd56d9f",
+      "DisplayName": "CustomActivity",
+      "ColorIndex": 3
+    },
+    "69149756-97c0-4e15-989a-7457006f1dd6": {
+      "ProjectGuid": "69149756-97c0-4e15-989a-7457006f1dd6",
+      "DisplayName": "ConsoleApp1",
+      "ColorIndex": 4
     }
   },
-  "NextColorIndex": 3
+  "NextColorIndex": 5
 }
