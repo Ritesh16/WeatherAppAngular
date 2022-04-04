@@ -1,38 +1,34 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace Data.Entities
 {
-    public class City
+    public class WeatherDescription
     {
         [Key]
         [Required]
         public int Id { get; set; }
-        [Required]
-        public string Name { get; set; }
-        public string State { get; set; }
-        public string Country { get; set; }
-        public string ZipCode { get; set; }
-        
-        [Required]
-        public float Latitude { get; set; }
 
         [Required]
-        public float Longitude { get; set; }
-        
+        public int WeatherId { get; set; }
         [Required]
-        public bool IsActive { get; set; }
-        
+        public string Main { get; set; }
+        [Required]
+        public string Description { get; set; }
+        [Required]
+        public string Icon { get; set; }
+
         [Required]
         public DateTime DateCreated { get; set; }
         
         [Required]
         public DateTime DateUpdated { get; set; }
-
-        public ICollection<RawWeather> RawWeatherDetails { get; set; }
-
+        [ForeignKey("WeatherId")]
+        public Weather Weather { get; set; }
     }
 }
