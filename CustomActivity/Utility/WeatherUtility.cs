@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -11,17 +12,19 @@ namespace CustomActivity.Utility
 {
     public class WeatherUtility
     {
-        public string GetWeather(string lat, string lon)
+        public WeatherModel GetWeather(string lat, string lon)
         {
-            string key="";
+            string key= "";
             using (var client = new HttpClient())
             {
-                var response =  client.GetStringAsync($"https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&appid={key}&units=imperial");
+                var url = $"{ConfigurationManager.AppSettings["ApiUrl"]}onecall?lat={lat}&lon={lon}&appid={key}&units=imperial";
+                var response =  client.GetStringAsync(url);
 
-                //var model = JsonConvert.DeserializeObject<WeatherModel>(response.Result);
-                //return model;
+                var model = JsonConvert.DeserializeObject<WeatherModel>(response.Result);
+                model.Json = response.Result;
+                return model;
 
-                return response.Result;
+                //return response.Result;
             }
 
         }

@@ -6,6 +6,7 @@ using CustomActivity.Data;
 using CustomActivity.Data.Repository;
 using CustomActivity.Utility;
 using CustomActivity.Data.Entities;
+using System.Configuration;
 //using CustomActivity.Data;
 //using CustomActivity.Data.Repository;
 
@@ -22,7 +23,7 @@ namespace CustomActivity
         {
             try
             {
-                var dbcontext = new AppDbContext("Server=localhost\\SQLEXPRESS01;Initial Catalog=WeatherDb; Integrated Security=true");
+                var dbcontext = new AppDbContext(ConfigurationManager.AppSettings["ConnectionString"]);
                 var cityRepo = new CityRepository(dbcontext);
                 var weatherRepo = new WeatherRepository(dbcontext);
                 var cities = cityRepo.Get();
@@ -32,7 +33,8 @@ namespace CustomActivity
                 {
                     if (!weatherRepo.Exists(city.Id))
                     {
-                        var weatherJson = utility.GetWeather(city.Latitude.ToString(), city.Longitude.ToString());
+                        var weatherModel = utility.GetWeather(city.Latitude.ToString(), city.Longitude.ToString());
+                        
                         var weather = new Weather();
                         weather.IsActive = true;
                         weather.CityId = city.Id;
