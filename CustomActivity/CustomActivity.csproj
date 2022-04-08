@@ -47,6 +47,7 @@
     <Reference Include="System.Activities" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -58,9 +59,17 @@
   <ItemGroup>
     <Compile Include="Data\AppDbContext.cs" />
     <Compile Include="Data\Entities\City.cs" />
+    <Compile Include="Data\Entities\RawWeather.cs" />
+    <Compile Include="Data\Entities\Temperature.cs" />
     <Compile Include="Data\Entities\Weather.cs" />
+    <Compile Include="Data\Entities\WeatherAlert.cs" />
+    <Compile Include="Data\Entities\WeatherDescription.cs" />
     <Compile Include="Data\Repository\CityRepository.cs" />
-    <Compile Include="Data\Repository\WeatherRepository.cs" />
+    <Compile Include="Data\Repository\Repository.cs" />
+    <Compile Include="Extensions\WeatherExtensions.cs" />
+    <Compile Include="Model\DailyWeatherModel.cs" />
+    <Compile Include="Model\TemperatureModel.cs" />
+    <Compile Include="Model\WeatherDescriptionModel.cs" />
     <Compile Include="Model\WeatherModel.cs" />
     <Compile Include="Utility\WeatherUtility.cs" />
     <Compile Include="WeatherActivity.cs" />

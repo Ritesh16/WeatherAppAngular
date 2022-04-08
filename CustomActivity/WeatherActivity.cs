@@ -7,8 +7,7 @@ using CustomActivity.Data.Repository;
 using CustomActivity.Utility;
 using CustomActivity.Data.Entities;
 using System.Configuration;
-//using CustomActivity.Data;
-//using CustomActivity.Data.Repository;
+using CustomActivity.Extensions;
 
 namespace CustomActivity
 {
@@ -25,27 +24,24 @@ namespace CustomActivity
             {
                 var dbcontext = new AppDbContext(ConfigurationManager.AppSettings["ConnectionString"]);
                 var cityRepo = new CityRepository(dbcontext);
-                var weatherRepo = new WeatherRepository(dbcontext);
+                var repo = new Repository(dbcontext);
                 var cities = cityRepo.Get();
                 var utility = new WeatherUtility();
 
                 foreach (var city in cities)
                 {
-                    if (!weatherRepo.Exists(city.Id))
+                    if (!repo.Exists(city.Id))
                     {
                         var weatherModel = utility.GetWeather(city.Latitude.ToString(), city.Longitude.ToString());
-                        
-                        var weather = new Weather();
-                        weather.IsActive = true;
-                        weather.CityId = city.Id;
-                        weather.DateUpdated = DateTime.Now;
-                        weather.DateCreated = DateTime.Now;
-                        weather.WeatherJson = weatherJson;
-                        weatherRepo.AddWeather(weather);
-                        weatherRepo.SaveChanges();
+
+                        var rawWeather = weatherModel.ToRawWeather(city.Id);
+                        repo.AddRawWeather(rawWeather);
+
+
                     }
                 }
 
+                repo.SaveChanges();
                 Success.Set(context, true);
                 Message.Set(context, $"Weather details imported successfully for {cities.Count()}.");
             }

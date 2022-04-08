@@ -15,7 +15,11 @@ namespace CustomActivity.Data
 
         }
 
-        public DbSet<City> Cities { get; set; }
-        public DbSet<Weather> Weathers { get; set; }
+        public DbSet<City> City { get; set; }
+        public DbSet<RawWeather> RawWeather { get; set; }
+        public DbSet<Weather> Weather { get; set; }
+        public DbSet<Temperature> Temperature { get; set; }
+        public DbSet<WeatherDescription> WeatherDescription { get; set; }
+        public DbSet<WeatherAlert> WeatherAlert { get; set; }
     }
 }
