@@ -37,7 +37,8 @@ namespace CustomActivity
                         var rawWeather = weatherModel.ToRawWeather(city.Id);
                         repo.AddRawWeather(rawWeather);
 
-
+                        var weather = weatherModel.ToWeather(city.Id);
+                        repo.AddWeather(weather);
                     }
                 }
 
@@ -54,36 +55,38 @@ namespace CustomActivity
         }
 
 
-        //public void Callme()
-        //{
-        //    try
-        //    {
-        //        var dbcontext = new AppDbContext("Server=localhost\\SQLEXPRESS01;Initial Catalog=WeatherDb; Integrated Security=true");
-        //        var cityRepo = new CityRepository(dbcontext);
-        //        var weatherRepo = new WeatherRepository(dbcontext);
-        //        var cities = cityRepo.Get();
-        //        var utility = new WeatherUtility();
+        public void Callme()
+        {
+            try
+            {
+                var dbcontext = new AppDbContext(ConfigurationManager.AppSettings["ConnectionString"]);
+                var cityRepo = new CityRepository(dbcontext);
+                var repo = new Repository(dbcontext);
+                var cities = cityRepo.Get();
+                var utility = new WeatherUtility();
 
-        //        foreach (var city in cities)
-        //        {
-        //            if (!weatherRepo.Exists(city.Id))
-        //            {
-        //                var weatherJson = utility.GetWeather(city.Latitude.ToString(), city.Longitude.ToString());
-        //                var weather = new Weather();
-        //                weather.IsActive = true;
-        //                weather.CityId = city.Id;
-        //                weather.DateUpdated = DateTime.Now;
-        //                weather.DateCreated = DateTime.Now;
-        //                weather.WeatherJson = weatherJson;
-        //                weatherRepo.AddWeather(weather);
-        //                weatherRepo.SaveChanges();
-        //            }
-        //        }
+                foreach (var city in cities)
+                {
+                    if (!repo.Exists(city.Id))
+                    {
+                        var weatherModel = utility.GetWeather(city.Latitude.ToString(), city.Longitude.ToString());
 
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //    }
-        //}
+                        var rawWeather = weatherModel.ToRawWeather(city.Id);
+                        repo.AddRawWeather(rawWeather);
+
+                        var weather = weatherModel.ToWeather(city.Id);
+                        repo.AddWeather(weather);
+                    }
+                }
+
+                repo.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+            }
+
+        }
+
+
     }
 }

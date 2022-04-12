@@ -10,7 +10,7 @@ namespace CustomActivity.Data.Entities
         [Required]
         public int Id { get; set; }
 
-        [Required]
+        //[ForeignKey("Weather")]
         public int WeatherId { get; set; }
 
         [Required]
@@ -41,7 +41,7 @@ namespace CustomActivity.Data.Entities
         public DateTime DateUpdated { get; set; }
 
         [ForeignKey("WeatherId")]
-        public Weather Weather { get; set; }
+        public virtual Weather Weather { get; set; }
 
     }
 }

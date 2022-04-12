@@ -17,29 +17,32 @@ namespace CustomActivity.Data.Repository
         }
         public void AddRawWeather(RawWeather rawWeather)
         {
-            context.RawWeather.Add(rawWeather);
+            //context.RawWeather.Add(rawWeather);
         }
         public void AddWeather(Weather weather)
         {
-            context.Weather.Add(weather);
+           // context.Weather.Add(weather);
         }
         public void AddWeatherDescription(WeatherDescription weatherDescription)
         {
-            context.WeatherDescription.Add(weatherDescription);
+            //context.WeatherDescription.Add(weatherDescription);
         }
         public void AddWeatherAlert(WeatherAlert weatherAlert)
         {
-            context.WeatherAlert.Add(weatherAlert);
+            //context.WeatherAlert.Add(weatherAlert);
         }
 
         public bool Exists(int cityId)
         {
-            var weather = context.RawWeather.FirstOrDefault(x => x.CityId == cityId &&
-                                                            x.DateCreated.Day == DateTime.Now.Day &&
-                                                            x.DateCreated.Month == DateTime.Now.Month && 
-                                                            x.DateCreated.Year == DateTime.Now.Year &&
-                                                            x.IsActive == true);
-            return weather != null ? true : false;
+            //var weather = context.RawWeather.FirstOrDefault(x => x.CityId == cityId &&
+            //                                                x.DateCreated.Day == DateTime.Now.Day &&
+            //                                                x.DateCreated.Month == DateTime.Now.Month && 
+            //                                                x.DateCreated.Year == DateTime.Now.Year &&
+            //                                                x.IsActive == true);
+            //return weather != null ? true : false;
+
+            return true
+                ;
         }
 
         public bool SaveChanges()

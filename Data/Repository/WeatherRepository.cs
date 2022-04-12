@@ -17,7 +17,7 @@ namespace Data.Repository
         }
         public void AddWeather(Weather weather)
         {
-            context.Weathers.Add(weather);
+            //context.Weathers.Add(weather);
         }
 
         public bool SaveChanges()
