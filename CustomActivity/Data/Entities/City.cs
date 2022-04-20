@@ -34,6 +34,7 @@ namespace CustomActivity.Data.Entities
         public DateTime DateUpdated { get; set; }
 
         public ICollection<RawWeather> RawWeatherDetails { get; set; }
+        public ICollection<Weather> Weathers { get; set; }
 
     }
 }

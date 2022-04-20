@@ -77,6 +77,23 @@ namespace CustomActivity
                         var weather = weatherModel.ToWeather(city.Id);
                         repo.AddWeather(weather);
                     }
+                    else
+                    {
+                        var weatherModel = utility.GetWeather(city.Latitude.ToString(), city.Longitude.ToString());
+
+                        var weather = weatherModel.ToWeather(city.Id);
+                        repo.AddWeather(weather);
+
+                        var temperature = weatherModel.ToTemperature();
+                        repo.AddTemperature(temperature);
+
+                        var weatherDescriptions = weatherModel.ToWeatherDescription();
+                        foreach (var weatherDescription in weatherDescriptions)
+                        {
+                            repo.AddWeatherDescription(weatherDescription);
+                        }
+
+                    }
                 }
 
                 repo.SaveChanges();

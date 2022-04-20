@@ -21,15 +21,19 @@ namespace CustomActivity.Data.Repository
         }
         public void AddWeather(Weather weather)
         {
-           // context.Weather.Add(weather);
+            context.Weather.Add(weather);
         }
         public void AddWeatherDescription(WeatherDescription weatherDescription)
         {
-            //context.WeatherDescription.Add(weatherDescription);
+            context.WeatherDescription.Add(weatherDescription);
         }
         public void AddWeatherAlert(WeatherAlert weatherAlert)
         {
-            //context.WeatherAlert.Add(weatherAlert);
+            context.WeatherAlert.Add(weatherAlert);
+        }
+        public void AddTemperature(Temperature temperature)
+        {
+            context.Temperature.Add(temperature);
         }
 
         public bool Exists(int cityId)

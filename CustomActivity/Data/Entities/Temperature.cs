@@ -10,7 +10,7 @@ namespace CustomActivity.Data.Entities
         [Required]
         public int Id { get; set; }
 
-        //[ForeignKey("Weather")]
+        [Required]
         public int WeatherId { get; set; }
 
         [Required]

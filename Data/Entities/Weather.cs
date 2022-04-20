@@ -12,6 +12,7 @@ namespace Data.Entities
         [Key]
         [Required]
         public int Id { get; set; }
+        [Required]
         public int CityId { get; set; }
         [Required]
         public DateTime WeatherDate { get; set; }

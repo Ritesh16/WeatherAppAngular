@@ -17,7 +17,7 @@ namespace CustomActivity.Data.Repository
         }
         public IEnumerable<City> Get()
         {
-            return context.City.ToList();
+            return context.City.Include("RawWeatherDetails").Include("Weathers").ToList();
         }
     }
 }

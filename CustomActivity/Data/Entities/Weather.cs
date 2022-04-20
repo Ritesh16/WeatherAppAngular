@@ -10,6 +10,7 @@ namespace CustomActivity.Data.Entities
         [Key]
         [Required]
         public int Id { get; set; }
+        [Required]
         public int CityId { get; set; }
         [Required]
         public DateTime WeatherDate { get; set; }
@@ -62,10 +63,10 @@ namespace CustomActivity.Data.Entities
         public DateTime DateUpdated { get; set; }
 
         [ForeignKey("CityId")]
-        public virtual City City { get; set; }
-       // public virtual Temperature Temperature { get; set; }
-        //public virtual ICollection<WeatherDescription> WeatherDescriptions { get; set; }
-        //public virtual ICollection<WeatherAlert> WeatherAlerts { get; set; }
+        public City City { get; set; }
+        public ICollection<Temperature> Temperature { get; set; }
+        public ICollection<WeatherDescription> WeatherDescriptions { get; set; }
+        public ICollection<WeatherAlert> WeatherAlerts { get; set; }
 
     }
 }

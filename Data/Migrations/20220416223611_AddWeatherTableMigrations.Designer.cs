@@ -4,6 +4,7 @@ using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220416223611_AddWeatherTableMigrations")]
+    partial class AddWeatherTableMigrations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -97,61 +99,6 @@ namespace Data.Migrations
                     b.ToTable("RawWeather", (string)null);
                 });
 
-            modelBuilder.Entity("Data.Entities.Temperature", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<float>("Day")
-                        .HasColumnType("real");
-
-                    b.Property<float>("Day_FeelsLike")
-                        .HasColumnType("real");
-
-                    b.Property<float>("Evening")
-                        .HasColumnType("real");
-
-                    b.Property<float>("Evening_FeelsLike")
-                        .HasColumnType("real");
-
-                    b.Property<float>("Max")
-                        .HasColumnType("real");
-
-                    b.Property<float>("Min")
-                        .HasColumnType("real");
-
-                    b.Property<float>("Morning")
-                        .HasColumnType("real");
-
-                    b.Property<float>("Morning_FeelsLike")
-                        .HasColumnType("real");
-
-                    b.Property<float>("Night")
-                        .HasColumnType("real");
-
-                    b.Property<float>("Night_FeelsLike")
-                        .HasColumnType("real");
-
-                    b.Property<int>("WeatherId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("WeatherId")
-                        .IsUnique();
-
-                    b.ToTable("Temperature", (string)null);
-                });
-
             modelBuilder.Entity("Data.Entities.Weather", b =>
                 {
                     b.Property<int>("Id")
@@ -221,91 +168,7 @@ namespace Data.Migrations
 
                     b.HasIndex("CityId");
 
-                    b.ToTable("Weather", (string)null);
-                });
-
-            modelBuilder.Entity("Data.Entities.WeatherAlert", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("EndDateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Event")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<string>("SenderName")
-                        .IsRequired()
-                        .HasMaxLength(80)
-                        .HasColumnType("nvarchar(80)");
-
-                    b.Property<DateTime>("StartDateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Tags")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("WeatherId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("WeatherId");
-
-                    b.ToTable("WeatherAlert", (string)null);
-                });
-
-            modelBuilder.Entity("Data.Entities.WeatherDescription", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Icon")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Main")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("WeatherId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("WeatherId");
-
-                    b.ToTable("WeatherDescription", (string)null);
+                    b.ToTable("Weather");
                 });
 
             modelBuilder.Entity("Data.Entities.RawWeather", b =>
@@ -319,17 +182,6 @@ namespace Data.Migrations
                     b.Navigation("City");
                 });
 
-            modelBuilder.Entity("Data.Entities.Temperature", b =>
-                {
-                    b.HasOne("Data.Entities.Weather", "Weather")
-                        .WithOne("Temperature")
-                        .HasForeignKey("Data.Entities.Temperature", "WeatherId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Weather");
-                });
-
             modelBuilder.Entity("Data.Entities.Weather", b =>
                 {
                     b.HasOne("Data.Entities.City", "City")
@@ -341,43 +193,11 @@ namespace Data.Migrations
                     b.Navigation("City");
                 });
 
-            modelBuilder.Entity("Data.Entities.WeatherAlert", b =>
-                {
-                    b.HasOne("Data.Entities.Weather", "Weather")
-                        .WithMany("WeatherAlerts")
-                        .HasForeignKey("WeatherId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Weather");
-                });
-
-            modelBuilder.Entity("Data.Entities.WeatherDescription", b =>
-                {
-                    b.HasOne("Data.Entities.Weather", "Weather")
-                        .WithMany("WeatherDescriptions")
-                        .HasForeignKey("WeatherId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Weather");
-                });
-
             modelBuilder.Entity("Data.Entities.City", b =>
                 {
                     b.Navigation("RawWeatherDetails");
 
                     b.Navigation("Weathers");
-                });
-
-            modelBuilder.Entity("Data.Entities.Weather", b =>
-                {
-                    b.Navigation("Temperature")
-                        .IsRequired();
-
-                    b.Navigation("WeatherAlerts");
-
-                    b.Navigation("WeatherDescriptions");
                 });
 #pragma warning restore 612, 618
         }
