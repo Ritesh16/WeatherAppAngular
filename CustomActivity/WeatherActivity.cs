@@ -93,6 +93,12 @@ namespace CustomActivity
                             repo.AddWeatherDescription(weatherDescription);
                         }
 
+                        var weatherAlerts = weatherModel.ToWeatherAlerts();
+                        foreach (var weatherAlert in weatherAlerts)
+                        {
+                            repo.AddWeatherAlert(weatherAlert);
+                        }
+
                     }
                 }
 

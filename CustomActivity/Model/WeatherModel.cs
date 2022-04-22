@@ -19,5 +19,8 @@ namespace CustomActivity.Model
         [JsonProperty("daily")]
         public DailyWeatherModel[] Daily { get; set; }
 
+        [JsonProperty("alerts")]
+        public WeatherAlertModel[] Alerts { get; set; }
+
     }
 }

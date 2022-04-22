@@ -14,7 +14,7 @@ namespace CustomActivity.Utility
     {
         public WeatherModel GetWeather(string lat, string lon)
         {
-            string key= "55ae37407b50fe9921672a4207926235";
+            string key= "";
             using (var client = new HttpClient())
             {
                 var url = $"{ConfigurationManager.AppSettings["ApiUrl"]}onecall?lat={lat}&lon={lon}&appid={key}&units=imperial";

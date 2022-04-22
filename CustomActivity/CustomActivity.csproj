@@ -69,6 +69,7 @@
     <Compile Include="Extensions\WeatherExtensions.cs" />
     <Compile Include="Model\DailyWeatherModel.cs" />
     <Compile Include="Model\TemperatureModel.cs" />
+    <Compile Include="Model\WeatherAlertModel.cs" />
     <Compile Include="Model\WeatherDescriptionModel.cs" />
     <Compile Include="Model\WeatherModel.cs" />
     <Compile Include="Utility\WeatherUtility.cs" />

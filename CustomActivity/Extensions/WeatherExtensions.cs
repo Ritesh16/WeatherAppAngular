@@ -2,6 +2,7 @@
 using CustomActivity.Model;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CustomActivity.Extensions
 {
@@ -38,11 +39,6 @@ namespace CustomActivity.Extensions
             weather.DewPoint = weatherModel.Daily[0].DewPoint;
             weather.Clouds = weatherModel.Daily[0].Clouds;
 
-            //weather.Temperature = weatherModel.ToTemperature();
-            //weather.Temperature.WeatherId = weather.Id;
-
-            //weather.WeatherDescriptions = weatherModel.ToWeatherDescription();
-
             return weather;
         }
 
@@ -67,16 +63,32 @@ namespace CustomActivity.Extensions
             return temperature;
         }
 
-        //public static List<WeatherAlert> ToWeatherAlerts(this WeatherModel weatherModel)
-        //{
-        //    var weatherAlerts = new List<WeatherAlert>();
-        //    foreach (var item in weatherModel.Daily)
-        //    {
+        public static List<WeatherAlert> ToWeatherAlerts(this WeatherModel weatherModel)
+        {
+            var weatherAlerts = new List<WeatherAlert>();
+            foreach (var item in weatherModel.Alerts)
+            {
+                var weatherAlert = new WeatherAlert()
+                {
+                    DateCreated = DateTime.Now,
+                    DateUpdated = DateTime.Now,
+                    Description = item.Description,
+                    EndDateTime = item.End.ToDateTime(),
+                    Event = item.Event,
+                    SenderName = item.Sender,
+                    StartDateTime = item.Start.ToDateTime()
+                };
 
-        //    }
+                foreach (var tag in item.Tags)
+                {
+                    weatherAlert.Tags += tag + ", ";
+                }
 
-        //    return weatherAlerts;
-        //}
+                weatherAlerts.Add(weatherAlert);
+            }
+
+            return weatherAlerts;
+        }
 
         public static List<WeatherDescription> ToWeatherDescription(this WeatherModel weatherModel)
         {
