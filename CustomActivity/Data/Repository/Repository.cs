@@ -17,7 +17,7 @@ namespace CustomActivity.Data.Repository
         }
         public void AddRawWeather(RawWeather rawWeather)
         {
-            //context.RawWeather.Add(rawWeather);
+           context.RawWeather.Add(rawWeather);
         }
         public void AddWeather(Weather weather)
         {
@@ -36,17 +36,23 @@ namespace CustomActivity.Data.Repository
             context.Temperature.Add(temperature);
         }
 
+        public IEnumerable<RawWeather> Get()
+        {
+            return context.RawWeather.ToList();
+        }
+        public RawWeather Get1()
+        {
+            return context.RawWeather.FirstOrDefault();
+        }
+
         public bool Exists(int cityId)
         {
-            //var weather = context.RawWeather.FirstOrDefault(x => x.CityId == cityId &&
-            //                                                x.DateCreated.Day == DateTime.Now.Day &&
-            //                                                x.DateCreated.Month == DateTime.Now.Month && 
-            //                                                x.DateCreated.Year == DateTime.Now.Year &&
-            //                                                x.IsActive == true);
-            //return weather != null ? true : false;
-
-            return true
-                ;
+            var weather = context.RawWeather.FirstOrDefault(x => x.CityId == cityId &&
+                                                            x.DateCreated.Day == DateTime.Now.Day &&
+                                                            x.DateCreated.Month == DateTime.Now.Month &&
+                                                            x.DateCreated.Year == DateTime.Now.Year &&
+                                                            x.IsActive == true);
+            return weather != null ? true : false;
         }
 
         public bool SaveChanges()

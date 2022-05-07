@@ -10,13 +10,13 @@ namespace CustomActivity.Model
         [JsonProperty("sunrise")]
         public long Sunrise { get; set; }
 
-        [JsonProperty("sunriseset")]
+        [JsonProperty("sunset")]
         public long Sunset { get; set; }
 
         [JsonProperty("moonrise")]
         public long Moonrise { get; set; }
 
-        [JsonProperty("moonriseset")]
+        [JsonProperty("moonset")]
         public long Moonset { get; set; }
 
         [JsonProperty("moon_phase")]

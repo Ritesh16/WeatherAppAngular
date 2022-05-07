@@ -38,6 +38,7 @@ namespace CustomActivity.Extensions
             weather.UVI = weatherModel.Daily[0].UVI;
             weather.DewPoint = weatherModel.Daily[0].DewPoint;
             weather.Clouds = weatherModel.Daily[0].Clouds;
+            weather.WeatherDate = weatherModel.Daily[0].Day.ToDateTime();
 
             return weather;
         }
@@ -66,6 +67,11 @@ namespace CustomActivity.Extensions
         public static List<WeatherAlert> ToWeatherAlerts(this WeatherModel weatherModel)
         {
             var weatherAlerts = new List<WeatherAlert>();
+            if (weatherModel.Alerts == null)
+            {
+                return weatherAlerts;
+            }
+
             foreach (var item in weatherModel.Alerts)
             {
                 var weatherAlert = new WeatherAlert()
@@ -79,10 +85,9 @@ namespace CustomActivity.Extensions
                     StartDateTime = item.Start.ToDateTime()
                 };
 
-                foreach (var tag in item.Tags)
-                {
-                    weatherAlert.Tags += tag + ", ";
-                }
+                if (item.Tags != null && item.Tags.Count() > 0)
+                    weatherAlert.Tags = String.Join(",", item.Tags);
+
 
                 weatherAlerts.Add(weatherAlert);
             }

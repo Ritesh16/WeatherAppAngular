@@ -12,12 +12,12 @@ namespace CustomActivity.Utility
 {
     public class WeatherUtility
     {
-        public WeatherModel GetWeather(string lat, string lon)
+        public WeatherModel GetWeather(string lat, string lon, string key, string apiUrl)
         {
-            string key= "";
+            //string key= "55ae37407b50fe9921672a4207926235";
             using (var client = new HttpClient())
             {
-                var url = $"{ConfigurationManager.AppSettings["ApiUrl"]}onecall?lat={lat}&lon={lon}&appid={key}&units=imperial";
+                var url = $"{apiUrl}onecall?lat={lat}&lon={lon}&appid={key}&units=imperial";
                 var response =  client.GetStringAsync(url);
 
                 var model = JsonConvert.DeserializeObject<WeatherModel>(response.Result);
