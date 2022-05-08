@@ -55,7 +55,7 @@ namespace CustomActivity
                             var weatherModel = utility.GetWeather(city.Latitude.ToString(), city.Longitude.ToString(), Key.Get(context), Url.Get(context));
                             var rawWeather = weatherModel.ToRawWeather(city.Id);
                             repo.AddRawWeather(rawWeather);
-
+                            repo.SaveChanges();
                             SaveWeatherDetails(weatherModel, repo, city.Id);
                         }
                     }
@@ -95,127 +95,6 @@ namespace CustomActivity
                 repo.AddWeatherAlert(weatherAlert);
             }
         }
-
-        //public void Callme()
-        //{
-        //    try
-        //    {
-        //        //System.IO.File.AppendAllLines(@"D:\Apps\Logs\WeatherApp\file.txt", new string[] { "Start" });
-        //        var connectionString = "Server=localhost\\SQLEXPRESS01;Initial Catalog=WeatherDb_D1; Integrated Security=true";
-        //        using (var dbcontext = new AppDbContext(connectionString))
-        //        {
-        //            //System.IO.File.AppendAllLines(@"D:\Apps\Logs\WeatherApp\file.txt", new string[] { connectionString });
-
-        //            //var dbcontext = new AppDbContext("Server=localhost\\SQLEXPRESS01;Initial Catalog=WeatherDb_D1; Integrated Security=true");
-        //            var cityRepo = new CityRepository(dbcontext);
-        //            var repo = new Repository(dbcontext);
-        //           var utility = new WeatherUtility();
-
-        //            var rawWeather = repo.Get();
-        //            foreach (var item in rawWeather)
-        //            {
-        //                var model = JsonConvert.DeserializeObject<WeatherModel>(item.WeatherJson);
-        //                model.Json = item.WeatherJson;
-        //                SaveWeatherDetails(model, repo, item.CityId);
-        //                repo.SaveChanges();
-        //            }
-                    
-                   
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        System.IO.File.AppendAllLines(@"D:\Apps\Logs\WeatherApp\file.txt", new string[] { ex.Message });
-        //        System.IO.File.AppendAllLines(@"D:\Apps\Logs\WeatherApp\file.txt", new string[] { ex.StackTrace });
-        //    }
-        //}
-        //public void Callme()
-        //{
-        //    try
-        //    {
-        //        var dbcontext = new AppDbContext("Server=localhost\\SQLEXPRESS01;Initial Catalog=WeatherDb_D1; Integrated Security=true");
-        //        var cityRepo = new CityRepository(dbcontext);
-        //        var repo = new Repository(dbcontext);
-        //        var cities = cityRepo.Get();
-        //        var utility = new WeatherUtility();
-
-        //        foreach (var city in cities)
-        //        {
-        //            if (!repo.Exists(city.Id))
-        //            {
-        //                var weatherModel = utility.GetWeather(city.Latitude.ToString(), city.Longitude.ToString(), "55ae37407b50fe9921672a4207926235", "https://api.openweathermap.org/data/2.5/");
-
-        //                var rawWeather = weatherModel.ToRawWeather(city.Id);
-        //                repo.AddRawWeather(rawWeather);
-
-        //                //var weather = weatherModel.ToWeather(city.Id);
-        //                //repo.AddWeather(weather);
-        //            }
-        //        }
-
-        //        repo.SaveChanges();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //    }
-        //}
-
-
-        //public void Callme()
-        //{
-        //    try
-        //    {
-        //        var dbcontext = new AppDbContext(ConfigurationManager.AppSettings["ConnectionString"]);
-        //        var cityRepo = new CityRepository(dbcontext);
-        //        var repo = new Repository(dbcontext);
-        //        var cities = cityRepo.Get();
-        //        var utility = new WeatherUtility();
-
-        //        foreach (var city in cities)
-        //        {
-        //            if (!repo.Exists(city.Id))
-        //            {
-        //                var weatherModel = utility.GetWeather(city.Latitude.ToString(), city.Longitude.ToString());
-
-        //                var rawWeather = weatherModel.ToRawWeather(city.Id);
-        //                repo.AddRawWeather(rawWeather);
-
-        //                var weather = weatherModel.ToWeather(city.Id);
-        //                repo.AddWeather(weather);
-        //            }
-        //            else
-        //            {
-        //                var weatherModel = utility.GetWeather(city.Latitude.ToString(), city.Longitude.ToString());
-
-        //                var weather = weatherModel.ToWeather(city.Id);
-        //                repo.AddWeather(weather);
-
-        //                var temperature = weatherModel.ToTemperature();
-        //                repo.AddTemperature(temperature);
-
-        //                var weatherDescriptions = weatherModel.ToWeatherDescription();
-        //                foreach (var weatherDescription in weatherDescriptions)
-        //                {
-        //                    repo.AddWeatherDescription(weatherDescription);
-        //                }
-
-        //                var weatherAlerts = weatherModel.ToWeatherAlerts();
-        //                foreach (var weatherAlert in weatherAlerts)
-        //                {
-        //                    repo.AddWeatherAlert(weatherAlert);
-        //                }
-
-        //            }
-        //        }
-
-        //        repo.SaveChanges();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //    }
-
-        //}
-
 
     }
 }
