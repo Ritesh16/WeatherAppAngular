@@ -54,6 +54,41 @@ namespace CustomActivity.Data.Repository
                                                             x.IsActive == true);
             return weather != null ? true : false;
         }
+        public IEnumerable<City> GetCities()
+        {
+            return context.City.Include("RawWeatherDetails").Include("Weathers").ToList();
+        }
+
+        public IEnumerable<RawWeather> GetRawWeatherList(DateTime date)
+        {
+            var rawWeatherList = context.RawWeather.Where(x => x.DateCreated.Day == date.Day &&
+                                                               x.DateCreated.Year == date.Year &&
+                                                               x.DateCreated.Month == date.Month &&
+                                                               x.IsActive == true);
+            return rawWeatherList;
+        }
+
+        public bool TodayWeatherExists(DateTime date)
+        {
+            return context.Weather.Any(x => x.DateCreated.Day == date.Day &&
+                                                               x.DateCreated.Year == date.Year &&
+                                                               x.DateCreated.Month == date.Month &&
+                                                               x.IsActive == true);
+        }
+
+        public bool TodayWeatherAlertExists(DateTime date)
+        {
+            return context.WeatherAlert.Any(x => x.DateCreated.Day == date.Day &&
+                                                               x.DateCreated.Year == date.Year &&
+                                                               x.DateCreated.Month == date.Month);
+        }
+
+        public bool TodayWeatherDescriptionExists(DateTime date)
+        {
+            return context.WeatherDescription.Any(x => x.DateCreated.Day == date.Day &&
+                                                               x.DateCreated.Year == date.Year &&
+                                                               x.DateCreated.Month == date.Month);
+        }
 
         public bool SaveChanges()
         {
