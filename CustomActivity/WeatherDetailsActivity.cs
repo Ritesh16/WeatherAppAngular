@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CustomActivity.Extensions;
 using CustomActivity.Model;
+using Newtonsoft.Json;
 
 namespace CustomActivity
 {
@@ -28,29 +29,10 @@ namespace CustomActivity
             try
             {
                 var connectionString = ConnectionString.Get(context);
-                using (var dbcontext = new AppDbContext(connectionString))
-                {
-                    var repo = new Repository(dbcontext);
-                    var rawWeatherList = repo.GetRawWeatherList(DateTime.Now);
-                    var utility = new WeatherUtility();
+                SaveWeatherDetails(connectionString, DateTime.Now);
+                Success.Set(context, true);
+                Message.Set(context, $"Weather details Saved successfully.");
 
-                    foreach (var rawWeather in rawWeatherList)
-                    {
-
-                        //if (!repo.Exists(city.Id))
-                        //{
-                        //    var weatherModel = utility.GetWeather(city.Latitude.ToString(), city.Longitude.ToString(), Key.Get(context), Url.Get(context));
-                        //    var rawWeather = weatherModel.ToRawWeather(city.Id);
-                        //    repo.AddRawWeather(rawWeather);
-                        //    //SaveWeatherDetails(weatherModel, repo, city.Id);
-
-                        //}
-                    }
-
-                    repo.SaveChanges();
-                    Success.Set(context, true);
-                    Message.Set(context, $"Weather details imported successfully for {cities.Count()}.");
-                }
             }
             catch (Exception ex)
             {
@@ -66,6 +48,31 @@ namespace CustomActivity
                 }
 
                 Message.Set(context, stringBuilder.ToString());
+            }
+        }
+
+        public void SaveWeatherDetails(string connectionString, DateTime date)
+        {
+            using (var dbcontext = new AppDbContext(connectionString))
+            {
+                var repo = new Repository(dbcontext);
+                var rawWeatherList = repo.GetRawWeatherList(date).ToList();
+                var utility = new WeatherUtility();
+
+                foreach (var rawWeather in rawWeatherList)
+                {
+                    var weatherModel = JsonConvert.DeserializeObject<WeatherModel>(rawWeather.WeatherJson);
+                    weatherModel.Json = rawWeather.WeatherJson;
+
+                    if (!repo.TodayWeatherExists(rawWeather.CityId, date))
+                    {
+                        SaveWeatherDetails(weatherModel, repo, rawWeather.CityId);
+                    }
+
+                    repo.SaveChanges();
+                }
+
+               
 
             }
         }

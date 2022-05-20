@@ -10,6 +10,7 @@ using System.Configuration;
 using CustomActivity.Extensions;
 using CustomActivity.Model;
 using Newtonsoft.Json;
+using System.Text;
 
 namespace CustomActivity
 {
@@ -32,31 +33,20 @@ namespace CustomActivity
         {
             try
             {
-                //System.IO.File.AppendAllLines(@"D:\Apps\Logs\WeatherApp\file.txt", new string[] { "Start" });
                 var connectionString = ConnectionString.Get(context);
                 using (var dbcontext = new AppDbContext(connectionString))
                 {
-                    //System.IO.File.AppendAllLines(@"D:\Apps\Logs\WeatherApp\file.txt", new string[] { connectionString });
-
-                    //var dbcontext = new AppDbContext("Server=localhost\\SQLEXPRESS01;Initial Catalog=WeatherDb_D1; Integrated Security=true");
-                    var cityRepo = new CityRepository(dbcontext);
                     var repo = new Repository(dbcontext);
-                    var cities = cityRepo.Get();
+                    var cities = repo.GetCities();
                     var utility = new WeatherUtility();
-
-
-                    //System.IO.File.AppendAllLines(@"D:\Apps\Logs\WeatherApp\file.txt", new string[] { "Before loop" ,  "Cities : " + cities.Count()  });
 
                     foreach (var city in cities)
                     {
                         if (!repo.Exists(city.Id))
                         {
-                            //System.IO.File.AppendAllLines(@"D:\Apps\Logs\WeatherApp\file.txt", new string[] { Key.Get(context) , Url.Get(context) });
                             var weatherModel = utility.GetWeather(city.Latitude.ToString(), city.Longitude.ToString(), Key.Get(context), Url.Get(context));
                             var rawWeather = weatherModel.ToRawWeather(city.Id);
                             repo.AddRawWeather(rawWeather);
-                            repo.SaveChanges();
-                            SaveWeatherDetails(weatherModel, repo, city.Id);
                         }
                     }
 
@@ -68,33 +58,20 @@ namespace CustomActivity
             catch (Exception ex)
             {
                 Success.Set(context, false);
-                Message.Set(context, ex.Message);
-                System.IO.File.AppendAllLines(@"D:\Apps\Logs\WeatherApp\file.txt", new string[] { ex.Message });
-                System.IO.File.AppendAllLines(@"D:\Apps\Logs\WeatherApp\file.txt", new string[] { ex.StackTrace });
+                var stringBuilder = new StringBuilder();
+                stringBuilder.Append(ex.Message);
+                stringBuilder.Append(Environment.NewLine);
+
+                while (ex.InnerException != null)
+                {
+                    stringBuilder.Append(ex.InnerException.Message);
+                    ex = ex.InnerException;
+                }
+
+                Message.Set(context, stringBuilder.ToString());
+
             }
 
         }
-
-        public void SaveWeatherDetails(WeatherModel weatherModel, Repository repo, int cityId)
-        {
-            var weather = weatherModel.ToWeather(cityId);
-            repo.AddWeather(weather);
-
-            var temperature = weatherModel.ToTemperature();
-            repo.AddTemperature(temperature);
-
-            var weatherDescriptions = weatherModel.ToWeatherDescription();
-            foreach (var weatherDescription in weatherDescriptions)
-            {
-                repo.AddWeatherDescription(weatherDescription);
-            }
-
-            var weatherAlerts = weatherModel.ToWeatherAlerts();
-            foreach (var weatherAlert in weatherAlerts)
-            {
-                repo.AddWeatherAlert(weatherAlert);
-            }
-        }
-
     }
 }

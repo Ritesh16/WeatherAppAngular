@@ -8,13 +8,13 @@
     "UiPath.Mail.Activities": "[1.12.3]",
     "UiPath.System.Activities": "[21.10.4]",
     "UiPath.UIAutomation.Activities": "[21.10.5]",
-    "WeatherActivity": "[1.0.6]"
+    "WeatherActivity": "[1.0.9]"
   },
   "webServices": [],
   "entitiesStores": [],
   "schemaVersion": "4.0",
   "studioVersion": "21.10.5.0",
-  "projectVersion": "1.0.6",
+  "projectVersion": "1.0.9",
   "runtimeOptions": {
     "autoDispose": false,
     "netFrameworkLazyLoading": false,

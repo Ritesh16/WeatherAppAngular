@@ -17,7 +17,7 @@ namespace CustomActivity.Data.Repository
         }
         public void AddRawWeather(RawWeather rawWeather)
         {
-           context.RawWeather.Add(rawWeather);
+            context.RawWeather.Add(rawWeather);
         }
         public void AddWeather(Weather weather)
         {
@@ -68,26 +68,13 @@ namespace CustomActivity.Data.Repository
             return rawWeatherList;
         }
 
-        public bool TodayWeatherExists(DateTime date)
+        public bool TodayWeatherExists(int cityId, DateTime date)
         {
-            return context.Weather.Any(x => x.DateCreated.Day == date.Day &&
-                                                               x.DateCreated.Year == date.Year &&
-                                                               x.DateCreated.Month == date.Month &&
-                                                               x.IsActive == true);
-        }
-
-        public bool TodayWeatherAlertExists(DateTime date)
-        {
-            return context.WeatherAlert.Any(x => x.DateCreated.Day == date.Day &&
-                                                               x.DateCreated.Year == date.Year &&
-                                                               x.DateCreated.Month == date.Month);
-        }
-
-        public bool TodayWeatherDescriptionExists(DateTime date)
-        {
-            return context.WeatherDescription.Any(x => x.DateCreated.Day == date.Day &&
-                                                               x.DateCreated.Year == date.Year &&
-                                                               x.DateCreated.Month == date.Month);
+            return context.Weather.Any(x => x.CityId == cityId &&
+                                            x.WeatherDate.Day == date.Day &&
+                                            x.WeatherDate.Year == date.Year &&
+                                            x.WeatherDate.Month == date.Month &&
+                                            x.IsActive == true);
         }
 
         public bool SaveChanges()
