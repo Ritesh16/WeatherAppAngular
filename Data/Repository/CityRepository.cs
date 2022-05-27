@@ -15,9 +15,24 @@ namespace Data.Repository
         {
             this.context = context;
         }
+
+        public void AddCity(City city)
+        {
+            context.Cities.Add(city);
+        }
+
         public IEnumerable<City> Get()
         {
             return context.Cities.ToList();
+        }
+
+        public void RemoveCity(int cityId)
+        {
+            var city = context.Cities.FirstOrDefault(x => x.Id == cityId);
+            if (city != null)
+            {
+                city.IsActive = false;
+            }
         }
     }
 }
