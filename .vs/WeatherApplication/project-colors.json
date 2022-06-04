@@ -30,7 +30,12 @@
       "ProjectGuid": "69149756-97c0-4e15-989a-7457006f1dd6",
       "DisplayName": "ConsoleApp1",
       "ColorIndex": 4
+    },
+    "225e103f-61b9-4204-8156-9f7e57f4781c": {
+      "ProjectGuid": "225e103f-61b9-4204-8156-9f7e57f4781c",
+      "DisplayName": "Business",
+      "ColorIndex": 5
     }
   },
-  "NextColorIndex": 5
+  "NextColorIndex": 6
 }
