@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Business.Models;
 using Business.Services.Interfaces;
+using Data.Entities;
 using Data.Repository;
 using Data.Repository.Interfaces;
 
@@ -21,9 +22,15 @@ namespace Business.Services
             _mapper = mapper;
         }
 
-        public void AddCity(CityModel city)
+        public void AddCity(CityModel cityModel)
         {
-            throw new NotImplementedException();
+            if(cityModel == null)
+            {
+                return;
+            }
+
+            var city = _mapper.Map<City>(cityModel);
+            _cityRepository.AddCity(city);
         }
 
         public IEnumerable<CityModel> GetCities(string[] cityNames)
@@ -45,7 +52,13 @@ namespace Business.Services
 
         public void RemoveCity(int cityId)
         {
-            throw new NotImplementedException();
+            if(cityId < 0)
+            {
+                return;
+            }
+
+            _cityRepository.RemoveCity(cityId);
+            _cityRepository.Save();
         }
     }
 }
