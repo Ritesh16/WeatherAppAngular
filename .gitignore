@@ -8,3 +8,6 @@ CustomActivity/obj
 CustomActivity/bin
 packages
 Business/bin/
+Business/obj/
+Business.Test/bin/
+Business.Test/obj/

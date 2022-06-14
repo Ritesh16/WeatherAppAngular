@@ -15,17 +15,18 @@ namespace WeatherAPI.Controllers
         {
             this.cityService = cityService;
         }
-        [HttpGet]
-        public string Get()
-        {
-            return "Hello";
-        }
+        //[HttpGet]
+        //[Route("")]
+        //public IEnumerable<CityModel> Get()
+        //{
+        //    return cityService.GetCities(null);
+        //}
 
         [HttpGet]
-        [Route("{id}")]
-        public IEnumerable<CityModel> Get(int id)
+        [Route("{names}")]
+        public IEnumerable<CityModel> Get([FromQuery] string[] names)
         {
-            return cityService.GetCities(null);
+            return cityService.GetCities(names);
         }
     }
 }
