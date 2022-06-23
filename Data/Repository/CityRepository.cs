@@ -1,5 +1,6 @@
 using Data.Entities;
 using Data.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Data.Repository
 {
@@ -17,9 +18,16 @@ namespace Data.Repository
             context.Cities.Add(city);
         }
 
-        public IEnumerable<City> Get()
+        public async Task<IEnumerable<City>> GetCities()
         {
-            return context.Cities.ToList();
+            return await context.Cities.ToListAsync();
+        }
+
+        public async Task<bool> CityExists(City city)
+        {
+            return await context.Cities
+                        .AnyAsync(x => x.Name.ToLower() == city.Name &&
+                                    x.State.ToLower() == city.State);
         }
 
         public void RemoveCity(int cityId)
@@ -29,6 +37,8 @@ namespace Data.Repository
             {
                 city.IsActive = false;
             }
+
+            context.Entry<City>(city).State = EntityState.Modified;
         }
 
         public bool Save()

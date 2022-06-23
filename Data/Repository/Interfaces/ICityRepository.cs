@@ -4,7 +4,8 @@ namespace Data.Repository.Interfaces
 {
     public interface ICityRepository
     {
-        IEnumerable<City> Get();
+        Task<IEnumerable<City>> GetCities();
+        Task<bool> CityExists(City city);
         void AddCity(City city);
         void RemoveCity(int cityId);
         bool Save();

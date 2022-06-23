@@ -8,8 +8,8 @@ namespace Business.Services.Interfaces
 {
     public interface ICityService
     {
-        IEnumerable<CityModel> GetCities(string[] cityNames);
-        void AddCity(CityModel city);
+        Task<IEnumerable<CityModel>> GetCitiesAsync(string[] cityNames);
+        Task<bool> AddCityAsync(CityModel city);
         void RemoveCity(int cityId);
     }
 }
