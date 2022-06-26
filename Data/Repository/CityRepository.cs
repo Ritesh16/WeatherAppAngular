@@ -41,6 +41,11 @@ namespace Data.Repository
             context.Entry<City>(city).State = EntityState.Modified;
         }
 
+        public async Task<int> GetTotalCities()
+        {
+            return await context.Cities.CountAsync(x => x.IsActive == true);
+        }
+
         public bool Save()
         {
             return this.context.SaveChanges() > 0;

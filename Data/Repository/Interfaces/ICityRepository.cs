@@ -8,6 +8,7 @@ namespace Data.Repository.Interfaces
         Task<bool> CityExists(City city);
         void AddCity(City city);
         void RemoveCity(int cityId);
+        Task<int> GetTotalCities();
         bool Save();
     }
 }

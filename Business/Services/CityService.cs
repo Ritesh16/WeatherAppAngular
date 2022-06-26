@@ -3,6 +3,7 @@ using Business.Models;
 using Business.Services.Interfaces;
 using Data.Entities;
 using Data.Repository.Interfaces;
+using Microsoft.Extensions.Configuration;
 
 namespace Business.Services
 {
@@ -10,18 +11,28 @@ namespace Business.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly IConfiguration _configuration;
 
-        public CityService(IUnitOfWork unitOfWork, IMapper mapper)
+        public CityService(IUnitOfWork unitOfWork, IMapper mapper, IConfiguration configuration)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _configuration = configuration;
         }
 
         public async Task<bool> AddCityAsync(CityModel cityModel)
         {
-            if(cityModel == null)
+            var restrictAddingMaxCities = _configuration["RestrictMaxCities"];
+
+            if(restrictAddingMaxCities != null && Convert.ToBoolean(restrictAddingMaxCities))
             {
-                return false;
+                var maxCities = Convert.ToInt32(_configuration["MaxCount"]);
+                var count = await _unitOfWork.CityRepository.GetTotalCities();
+
+                if(maxCities >= count)
+                {
+                    return false;
+                }
             }
 
             var city = _mapper.Map<City>(cityModel);
@@ -32,8 +43,7 @@ namespace Business.Services
                 return await _unitOfWork.Save();
             }
 
-            return cityExists;
-
+            return !cityExists;
         }
         public async Task<IEnumerable<CityModel>> GetCitiesAsync(string[] cityNames)
         {
@@ -52,15 +62,15 @@ namespace Business.Services
             return _mapper.Map<IEnumerable<CityModel>>(cities);
         }
 
-        public void RemoveCity(int cityId)
+        public async Task<bool> RemoveCity(int cityId)
         {
             if(cityId < 0)
             {
-                return;
+                return false;
             }
 
             _unitOfWork.CityRepository.RemoveCity(cityId);
-            _unitOfWork.Save();
+            return await _unitOfWork.Save();
         }
     }
 }
