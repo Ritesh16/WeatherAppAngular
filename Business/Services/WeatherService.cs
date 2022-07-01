@@ -16,14 +16,13 @@ namespace Business.Services
         }
         public async Task<CityWeatherModel> GetCityWeather(int cityId)
         {
-            var output = await _cityService.GetCityByIdAsync(cityId);
+            var city = await _cityService.GetCityByIdAsync(cityId);
 
-            if(output.Status)
+            if (city == null)
             {
-                throw new Exception(output.Message);
+                throw new Exception($"City {cityId} not found.");
             }
 
-            var city = output.Output;
             var weatherModel = await _weatherUtility.GetWeather(city);
             return new CityWeatherModel(city.Id, city.Name, weatherModel, city.State);
         }

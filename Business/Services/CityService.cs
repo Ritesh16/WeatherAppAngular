@@ -55,10 +55,9 @@ namespace Business.Services
             outputModel.Output = !cityExists;
             return outputModel;
         }
-        public async Task<OutputModel<IEnumerable<CityModel>>> GetCitiesAsync(string[] cityNames)
+        public async Task<IEnumerable<CityModel>> GetCitiesAsync(string[] cityNames)
         {
             var cities = await _unitOfWork.CityRepository.GetCities();
-            var outputModel = new OutputModel<IEnumerable<CityModel>>();
             if (cityNames != null && cityNames.Count() > 0)
             {
                 foreach (var item in cityNames)
@@ -67,48 +66,31 @@ namespace Business.Services
                 }
 
                 var filterCities = cities.Where(x => cityNames.Contains(x.Name.ToLower()));
-                outputModel.Status = true;
-                outputModel.Output = _mapper.Map<IEnumerable<CityModel>>(filterCities);
-                return outputModel;
+                return _mapper.Map<IEnumerable<CityModel>>(filterCities);
             }
 
-            outputModel.Status = true;
-            outputModel.Output = _mapper.Map<IEnumerable<CityModel>>(cities);
-            return outputModel;
+            return _mapper.Map<IEnumerable<CityModel>>(cities);
         }
-        public async Task<OutputModel<CityModel>> GetCityByIdAsync(int cityId)
+        public async Task<CityModel> GetCityByIdAsync(int cityId)
         {
-            var outputModel = new OutputModel<CityModel>();
             if (cityId <= 0)
             {
-                outputModel.Status = false;
-                outputModel.Message = $"City Id {cityId} is not valid.";
-                return outputModel;
+                return null;
             }
 
             var city = await _unitOfWork.CityRepository.GetCityById(cityId);
 
-            var cityModel = _mapper.Map<CityModel>(city);
-            outputModel.Status = true;
-            outputModel.Output = cityModel;
-            return outputModel;
+            return _mapper.Map<CityModel>(city);
         }
-        public async Task<OutputModel<bool>> RemoveCity(int cityId)
+        public async Task<bool> RemoveCity(int cityId)
         {
-            var outputModel = new OutputModel<bool>();
             if (cityId <= 0)
             {
-                outputModel.Status = false;
-                outputModel.Message = $"City Id {cityId} is not valid.";
-                outputModel.Output = false;
-                return outputModel;
+                return false;
             }
 
             _unitOfWork.CityRepository.RemoveCity(cityId);
-            outputModel.Output = await _unitOfWork.Save();
-            outputModel.Status = true;
-            outputModel.Message = $"City {cityId} removed successfully.";
-            return outputModel;
+            return await _unitOfWork.Save();
         }
     }
 }

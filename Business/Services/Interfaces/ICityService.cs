@@ -4,9 +4,9 @@ namespace Business.Services.Interfaces
 {
     public interface ICityService
     {
-        Task<OutputModel<IEnumerable<CityModel>>> GetCitiesAsync(string[] cityNames);
+        Task<IEnumerable<CityModel>> GetCitiesAsync(string[] cityNames);
         Task<OutputModel<bool>> AddCityAsync(CityModel city);
-        Task<OutputModel<bool>> RemoveCity(int cityId);
-        Task<OutputModel<CityModel>> GetCityByIdAsync(int cityId);
+        Task<bool> RemoveCity(int cityId);
+        Task<CityModel> GetCityByIdAsync(int cityId);
     }
 }
