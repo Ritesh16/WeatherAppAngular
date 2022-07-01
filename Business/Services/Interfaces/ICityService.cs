@@ -1,16 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Business.Models;
 
 namespace Business.Services.Interfaces
 {
     public interface ICityService
     {
-        Task<IEnumerable<CityModel>> GetCitiesAsync(string[] cityNames);
-        Task<bool> AddCityAsync(CityModel city);
-        Task<bool> RemoveCity(int cityId);
-        Task<CityModel> GetCityByIdAsync(int cityId);
+        Task<OutputModel<IEnumerable<CityModel>>> GetCitiesAsync(string[] cityNames);
+        Task<OutputModel<bool>> AddCityAsync(CityModel city);
+        Task<OutputModel<bool>> RemoveCity(int cityId);
+        Task<OutputModel<CityModel>> GetCityByIdAsync(int cityId);
     }
 }
