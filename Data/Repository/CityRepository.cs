@@ -50,5 +50,10 @@ namespace Data.Repository
         {
             return this.context.SaveChanges() > 0;
         }
+
+        public async Task<City> GetCityById(int cityId)
+        {
+            return await context.Cities.FindAsync(cityId);
+        }
     }
 }

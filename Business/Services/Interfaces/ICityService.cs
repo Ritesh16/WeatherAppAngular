@@ -11,5 +11,6 @@ namespace Business.Services.Interfaces
         Task<IEnumerable<CityModel>> GetCitiesAsync(string[] cityNames);
         Task<bool> AddCityAsync(CityModel city);
         Task<bool> RemoveCity(int cityId);
+        Task<CityModel> GetCityByIdAsync(int cityId);
     }
 }

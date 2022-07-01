@@ -9,6 +9,7 @@ namespace Data.Repository.Interfaces
         void AddCity(City city);
         void RemoveCity(int cityId);
         Task<int> GetTotalCities();
+        Task<City> GetCityById(int cityId);
         bool Save();
     }
 }

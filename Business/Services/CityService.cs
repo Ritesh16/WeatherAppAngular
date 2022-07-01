@@ -62,6 +62,19 @@ namespace Business.Services
             return _mapper.Map<IEnumerable<CityModel>>(cities);
         }
 
+        public async Task<CityModel> GetCityByIdAsync(int cityId)
+        {
+            if (cityId <= 0)
+            {
+                return null;
+            }
+
+            var c = await _unitOfWork.CityRepository.GetCityById(cityId);
+
+            var city = _mapper.Map<CityModel>(c);
+            return city;
+        }
+
         public async Task<bool> RemoveCity(int cityId)
         {
             if(cityId < 0)
