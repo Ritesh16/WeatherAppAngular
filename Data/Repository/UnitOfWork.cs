@@ -12,9 +12,14 @@ namespace Data.Repository
         private readonly AppDbContext context;
 
         public ICityRepository CityRepository { get; set; }
-        public UnitOfWork(ICityRepository cityRepository, AppDbContext context)
+
+        public IWeatherHistoryRepository WeatherHistoryRepository { get; set; }
+
+        public UnitOfWork(ICityRepository cityRepository, IWeatherHistoryRepository weatherHistoryRepository,
+                        AppDbContext context)
         {
             CityRepository = cityRepository;
+            WeatherHistoryRepository = weatherHistoryRepository;
             this.context = context;
         }
 

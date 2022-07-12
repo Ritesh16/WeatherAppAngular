@@ -1,7 +1,4 @@
-﻿using Business.Utility;
-using Microsoft.AspNetCore.Http;
-using Business.Utility;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Business.Services.Interfaces;
 
 namespace WeatherAPI.Controllers

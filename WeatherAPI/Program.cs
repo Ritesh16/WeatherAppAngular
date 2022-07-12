@@ -18,10 +18,14 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options => 
             options.UseSqlServer(builder.Configuration.GetConnectionString("WeatherAppConnection")));
 
-builder.Services.AddScoped<IWeatherUtility, WeatherUtility>();
 builder.Services.AddScoped<ICityRepository, CityRepository>();
+builder.Services.AddScoped<IWeatherHistoryRepository, WeatherHistoryRepository>();
+
+
+builder.Services.AddScoped<IWeatherUtility, WeatherUtility>();
 builder.Services.AddScoped<ICityService, CityService>();
 builder.Services.AddScoped<IWeatherService, WeatherService>();
+builder.Services.AddScoped<IWeatherHistoryService, WeatherHistoryService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
