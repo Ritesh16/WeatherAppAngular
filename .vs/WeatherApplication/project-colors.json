@@ -35,7 +35,12 @@
       "ProjectGuid": "225e103f-61b9-4204-8156-9f7e57f4781c",
       "DisplayName": "Business",
       "ColorIndex": 5
+    },
+    "446e8b48-b1e4-49b1-9d4b-004dcd56a0d1": {
+      "ProjectGuid": "446e8b48-b1e4-49b1-9d4b-004dcd56a0d1",
+      "DisplayName": "Data",
+      "ColorIndex": 6
     }
   },
-  "NextColorIndex": 6
+  "NextColorIndex": 7
 }

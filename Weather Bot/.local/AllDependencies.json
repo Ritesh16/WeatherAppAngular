@@ -2046,7 +2046,7 @@
           "lib/net461/UiPath.Vision.dll": {}
         }
       },
-      "WeatherActivity/0.0.91": {
+      "WeatherActivity/1.0.9": {
         "type": "package",
         "compile": {
           "lib/_._": {}
@@ -4089,7 +4089,7 @@
           "lib/net461/UiPath.Vision.dll": {}
         }
       },
-      "WeatherActivity/0.0.91": {
+      "WeatherActivity/1.0.9": {
         "type": "package",
         "compile": {
           "lib/_._": {}
@@ -7675,17 +7675,17 @@
         "uipath.vision.nuspec"
       ]
     },
-    "WeatherActivity/0.0.91": {
-      "sha512": "FY9pSTeRFh8rgptBpjqIXLh76X9+6YJvedOLCtPLaaw/ZMwh+nJtLzcCeQ7UeQL3WkaabhLgeJfcrEtweIlAHg==",
+    "WeatherActivity/1.0.9": {
+      "sha512": "A+y/IK2+13z3K/JuyXX4kfO78vQMsTmdfqDzzzASvqKFIPET6UYvO5FNv86dblj2YMugY4Vfj17nSlaUIDKZtw==",
       "type": "package",
-      "path": "weatheractivity/0.0.91",
+      "path": "weatheractivity/1.0.9",
       "files": [
         ".nupkg.metadata",
         "lib/CustomActivity.dll",
         "lib/EntityFramework.SqlServer.dll",
         "lib/EntityFramework.dll",
         "lib/Newtonsoft.Json.dll",
-        "weatheractivity.0.0.91.nupkg.sha512",
+        "weatheractivity.1.0.9.nupkg.sha512",
         "weatheractivity.nuspec"
       ]
     }
@@ -7698,7 +7698,7 @@
       "UiPath.Mail.Activities >= 1.12.3 <= 1.12.3",
       "UiPath.System.Activities >= 21.10.4 <= 21.10.4",
       "UiPath.UIAutomation.Activities >= 21.10.5 <= 21.10.5",
-      "WeatherActivity >= 0.0.91 <= 0.0.91"
+      "WeatherActivity >= 1.0.9 <= 1.0.9"
     ]
   },
   "packageFolders": {
@@ -7743,7 +7743,7 @@
           "WeatherActivity": {
             "include": "Runtime",
             "target": "Package",
-            "version": "[0.0.91, 0.0.91]"
+            "version": "[1.0.9, 1.0.9]"
           }
         },
         "runtimeIdentifierGraphPath": "C:\\Users\\rites\\AppData\\Local\\Programs\\UiPath\\Studio\\runtime.json"

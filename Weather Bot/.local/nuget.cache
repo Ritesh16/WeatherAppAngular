@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "KN5guQMozTfNPe7QPVZPmx8b7sh1icqOhhggmFhw1Vtnpjy0qXEleVYpcAnw7xyrtd2P1O6oT4rw1vOO59/uZA==",
+  "dgSpecHash": "dpu51CaIO4ekGjCHVJc+BPbzi5QOibzVN+8zpiMYF5E8APZTaX9Ihqqs4pJvMTkF5vkbKFMn9GECZz+AtOPalw==",
   "success": true,
   "projectFilePath": "D:\\Apps\\WeatherApplication\\Weather Bot\\.local\\",
   "expectedPackageFiles": [
@@ -96,7 +96,7 @@
     "C:\\Users\\rites\\.nuget\\packages\\uipath.telemetry.client\\1.5.3\\uipath.telemetry.client.1.5.3.nupkg.sha512",
     "C:\\Users\\rites\\.nuget\\packages\\uipath.uiautomation.activities\\21.10.5\\uipath.uiautomation.activities.21.10.5.nupkg.sha512",
     "C:\\Users\\rites\\.nuget\\packages\\uipath.vision\\3.1.4\\uipath.vision.3.1.4.nupkg.sha512",
-    "C:\\Users\\rites\\.nuget\\packages\\weatheractivity\\0.0.91\\weatheractivity.0.0.91.nupkg.sha512"
+    "C:\\Users\\rites\\.nuget\\packages\\weatheractivity\\1.0.9\\weatheractivity.1.0.9.nupkg.sha512"
   ],
   "logs": []
 }

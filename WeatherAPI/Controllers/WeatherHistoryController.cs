@@ -15,13 +15,13 @@ namespace WeatherAPI.Controllers
             this.weatherHistoryService = weatherHistoryService;
         }
 
-        [HttpGet("", Name = "WeatherHistory")]
+        [HttpGet("{cityId}/{month}/{year}")]
         public async Task<ActionResult> Get(int cityId, int month, int year)
         {
             return Ok(await weatherHistoryService.GetWeatherHistory(cityId, month, year));
         }
 
-        [HttpGet("WeatherHistory/Day", Name = "WeatherHistoryofDay")]
+        [HttpGet("{cityId}/{month}/{year}/{day}")]
         public async Task<ActionResult> GetWeatherofDay(int cityId, int year, int month, int day)
         {
             return Ok(await weatherHistoryService.GetWeatherHistory(cityId, month, year, day));
