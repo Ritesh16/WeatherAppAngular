@@ -27,7 +27,8 @@ builder.Services.AddScoped<IWeatherUtility, WeatherUtility>();
 builder.Services.AddScoped<ICityService, CityService>();
 builder.Services.AddScoped<IWeatherService, WeatherService>();
 builder.Services.AddScoped<IWeatherHistoryService, WeatherHistoryService>();
-builder.Services.AddScoped<IColdestDayStatisticsService, ColdestDayStatisticsService>();
+builder.Services.AddScoped<IColdDayStatisticsService, ColdDayStatisticsService>();
+builder.Services.AddScoped<IHotDayStatisticsService, HotDayStatisticsService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

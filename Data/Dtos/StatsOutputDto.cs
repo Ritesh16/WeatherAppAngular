@@ -5,6 +5,11 @@
         public T Value { get; set; }
         public DateTime Date { get; set; }
 
+        public StatsOutputDto()
+        {
+
+        }
+
         public StatsOutputDto(T value, DateTime date)
         {
             Value = value;
