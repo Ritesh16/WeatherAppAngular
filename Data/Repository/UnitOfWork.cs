@@ -1,9 +1,4 @@
 ﻿using Data.Repository.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Data.Repository
 {
@@ -15,11 +10,16 @@ namespace Data.Repository
 
         public IWeatherHistoryRepository WeatherHistoryRepository { get; set; }
 
-        public UnitOfWork(ICityRepository cityRepository, IWeatherHistoryRepository weatherHistoryRepository,
-                        AppDbContext context)
+        public IStatisticsRepository StatisticsRepository { get; set; }
+
+        public UnitOfWork(ICityRepository cityRepository, AppDbContext context,
+                         IWeatherHistoryRepository weatherHistoryRepository,
+                         IStatisticsRepository statisticsRepository
+                         )
         {
             CityRepository = cityRepository;
             WeatherHistoryRepository = weatherHistoryRepository;
+            StatisticsRepository = statisticsRepository;
             this.context = context;
         }
 

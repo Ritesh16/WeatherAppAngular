@@ -4,6 +4,8 @@
     {
         ICityRepository CityRepository { get; }
         IWeatherHistoryRepository WeatherHistoryRepository { get; }
+
+        IStatisticsRepository StatisticsRepository { get; }
         Task<bool> Save();
     }
 }
