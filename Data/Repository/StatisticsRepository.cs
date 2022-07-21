@@ -1,11 +1,6 @@
 ﻿using Data.Dtos;
 using Data.Entities;
 using Data.Repository.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Data.Repository
 {
@@ -19,7 +14,7 @@ namespace Data.Repository
         }
         public StatsOutputDto<float> GetColdestDayOfCity(int cityId, int month, int year)
         {
-            var query = GetTemperaturesForCity(cityId, month, year)
+            var query = GetTemperaturesForCityQuery(cityId, month, year)
                             .OrderBy(x => x.Max);
 
             var temperature = query.FirstOrDefault();
@@ -37,7 +32,7 @@ namespace Data.Repository
 
         public StatsOutputDto<float> GetHottestDayOfCity(int cityId, int month, int year)
         {
-            var query = GetTemperaturesForCity(cityId, month, year)
+            var query = GetTemperaturesForCityQuery(cityId, month, year)
                            .OrderByDescending(x => x.Max);
 
             var temperature = query.FirstOrDefault();
@@ -53,9 +48,21 @@ namespace Data.Repository
             }
         }
 
+        public List<StatsOutputDto<string>> GetRainyDaysOfCity(int cityId, int month, int year)
+        {
+            var rainyDaysQuery = from wd in SearchDaysByWeatherDescriptionForCityQuery(cityId, month, year, "rain")
+                                 select new StatsOutputDto<string>
+                                 {
+                                     Date = wd.DateCreated,
+                                     Value = wd.Description
+                                 };
+
+            return rainyDaysQuery.ToList();
+        }
+
         public List<StatsOutputDto<float>> GetTopColdDaysOfCity(int cityId, int month, int year, int number)
         {
-            var coldTemperatureList = GetTemperaturesForCity(cityId, month, year)
+            var coldTemperatureList = GetTemperaturesForCityQuery(cityId, month, year)
                                         .OrderBy(x => x.Max)
                                         .Take(number)
                                         .ToList();
@@ -72,7 +79,7 @@ namespace Data.Repository
 
         public List<StatsOutputDto<float>> GetTopHotDaysOfCity(int cityId, int month, int year, int number)
         {
-            var hotTemperatureList = GetTemperaturesForCity(cityId, month, year)
+            var hotTemperatureList = GetTemperaturesForCityQuery(cityId, month, year)
                                          .OrderByDescending(x => x.Max)
                                          .Take(number)
                                          .ToList();
@@ -87,13 +94,57 @@ namespace Data.Repository
             return output;
         }
 
-        private IQueryable<Temperature> GetTemperaturesForCity(int cityId, int month, int year)
+        public int GetTotalRainyDaysOfCity(int cityId, int month, int year)
+        {
+            var rainyDays = SearchDaysByWeatherDescriptionForCityQuery(cityId, month, year, "rain");
+            return rainyDays.Count();
+        }
+        public int GetTotalCloudyDaysOfCity(int cityId, int month, int year)
+        {
+            var cloudyDays = SearchDaysByWeatherDescriptionForCityQuery(cityId, month, year, "cloud");
+            return cloudyDays.Count();
+        }
+
+        public List<StatsOutputDto<string>> GetCloudyDaysOfCity(int cityId, int month, int year)
+        {
+            var cloudyDaysQuery = (from wd in SearchDaysByWeatherDescriptionForCityQuery(cityId, month, year, "cloud")
+                                  select new StatsOutputDto<string>
+                                  {
+                                      Date = wd.DateCreated,
+                                      Value = wd.Description
+                                  });
+
+            return cloudyDaysQuery.ToList();
+        }
+        private IQueryable<Temperature> GetTemperaturesForCityQuery(int cityId, int month, int year)
         {
             var query = (from w in context.Weathers
                          join t in context.Temperatures
                              on w.Id equals t.WeatherId
                          where w.CityId == cityId
                          select t);
+
+            if (month > 0)
+            {
+                query = query.Where(x => x.DateCreated.Month == month);
+            }
+
+            if (year > 0)
+            {
+                query = query.Where(x => x.DateCreated.Year == year);
+            }
+
+            return query;
+        }
+
+        private IQueryable<WeatherDescription> SearchDaysByWeatherDescriptionForCityQuery(int cityId, int month, int year, string searchWord)
+        {
+            var query = (from w in context.Weathers
+                         join wd in context.WeatherDescriptions
+                             on w.Id equals wd.WeatherId
+                         where w.CityId == cityId &&
+                               wd.Description.Contains(searchWord)
+                         select wd);
 
             if (month > 0)
             {
