@@ -29,7 +29,6 @@ namespace Data.Repository
                 return new StatsOutputDto<float>();
             }
         }
-
         public StatsOutputDto<float> GetHottestDayOfCity(int cityId, int month, int year)
         {
             var query = GetTemperaturesForCityQuery(cityId, month, year)
@@ -47,13 +46,11 @@ namespace Data.Repository
                 return new StatsOutputDto<float>();
             }
         }
-
         public List<StatsOutputDto<string>> GetRainyDaysOfCity(int cityId, int month, int year)
         {
             var rainyDaysQuery = SearchDaysByWeatherDescriptionForCityQuery(cityId, month, year, "rain");
             return rainyDaysQuery.ToList();
         }
-
         public List<StatsOutputDto<float>> GetTopColdDaysOfCity(int cityId, int month, int year, int number)
         {
             var coldTemperatureList = GetTemperaturesForCityQuery(cityId, month, year)
@@ -63,7 +60,6 @@ namespace Data.Repository
 
             return coldTemperatureList;
         }
-
         public List<StatsOutputDto<float>> GetTopHotDaysOfCity(int cityId, int month, int year, int number)
         {
             var hotTemperatureList = GetTemperaturesForCityQuery(cityId, month, year)
@@ -73,7 +69,6 @@ namespace Data.Repository
 
             return hotTemperatureList;
         }
-
         public int GetTotalRainyDaysOfCity(int cityId, int month, int year)
         {
             var rainyDays = SearchDaysByWeatherDescriptionForCityQuery(cityId, month, year, "rain");
@@ -84,7 +79,6 @@ namespace Data.Repository
             var cloudyDays = SearchDaysByWeatherDescriptionForCityQuery(cityId, month, year, "cloud");
             return cloudyDays.Count();
         }
-
         public List<StatsOutputDto<string>> GetCloudyDaysOfCity(int cityId, int month, int year)
         {
             var cloudyDaysQuery = SearchDaysByWeatherDescriptionForCityQuery(cityId, month, year, "cloud");
@@ -114,7 +108,6 @@ namespace Data.Repository
 
             return query;
         }
-
         private IQueryable<StatsOutputDto<string>> SearchDaysByWeatherDescriptionForCityQuery(int cityId, int month, int year, string searchWord)
         {
             var query = (from w in context.Weathers

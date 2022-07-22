@@ -19,8 +19,6 @@ namespace Data.Repository
                          join t in context.Temperatures on w.Id equals t.WeatherId
                          join wd in context.WeatherDescriptions on w.Id equals wd.WeatherId
                          where c.Id == cityId
-                         && w.DateCreated.Month == month
-                         && w.DateCreated.Year == year
                          select new WeatherHistoryDto
                          {
                              WeatherId = w.Id,
@@ -29,10 +27,21 @@ namespace Data.Repository
                              Humidity = w.Humidity,
                              Temp = t.Day,
                              Icon = wd.Icon,
-                             Date = w.DateCreated
-                         }).OrderByDescending(x => x.Date);
+                             Date = w.WeatherDate
+                         });
 
-            var data = await query.ToListAsync();
+
+            if(month > 0)
+            {
+                query = query.Where(x => x.Date.Month == month);
+            }
+
+            if (year > 0)
+            {
+                query = query.Where(x => x.Date.Year == year);
+            }
+
+            var data = await query.OrderByDescending(x => x.Date).ToListAsync();
             return data;
         }
 
