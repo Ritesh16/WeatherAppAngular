@@ -50,13 +50,7 @@ namespace Data.Repository
 
         public List<StatsOutputDto<string>> GetRainyDaysOfCity(int cityId, int month, int year)
         {
-            var rainyDaysQuery = from wd in SearchDaysByWeatherDescriptionForCityQuery(cityId, month, year, "rain")
-                                 select new StatsOutputDto<string>
-                                 {
-                                     Date = wd.DateCreated,
-                                     Value = wd.Description
-                                 };
-
+            var rainyDaysQuery = SearchDaysByWeatherDescriptionForCityQuery(cityId, month, year, "rain");
             return rainyDaysQuery.ToList();
         }
 
@@ -107,13 +101,7 @@ namespace Data.Repository
 
         public List<StatsOutputDto<string>> GetCloudyDaysOfCity(int cityId, int month, int year)
         {
-            var cloudyDaysQuery = (from wd in SearchDaysByWeatherDescriptionForCityQuery(cityId, month, year, "cloud")
-                                  select new StatsOutputDto<string>
-                                  {
-                                      Date = wd.DateCreated,
-                                      Value = wd.Description
-                                  });
-
+            var cloudyDaysQuery = SearchDaysByWeatherDescriptionForCityQuery(cityId, month, year, "cloud");
             return cloudyDaysQuery.ToList();
         }
         private IQueryable<Temperature> GetTemperaturesForCityQuery(int cityId, int month, int year)
@@ -137,23 +125,27 @@ namespace Data.Repository
             return query;
         }
 
-        private IQueryable<WeatherDescription> SearchDaysByWeatherDescriptionForCityQuery(int cityId, int month, int year, string searchWord)
+        private IQueryable<StatsOutputDto<string>> SearchDaysByWeatherDescriptionForCityQuery(int cityId, int month, int year, string searchWord)
         {
             var query = (from w in context.Weathers
                          join wd in context.WeatherDescriptions
                              on w.Id equals wd.WeatherId
                          where w.CityId == cityId &&
                                wd.Description.Contains(searchWord)
-                         select wd);
+                         select new StatsOutputDto<string>
+                         {
+                             Date = w.WeatherDate,
+                             Value = wd.Description
+                         });
 
             if (month > 0)
             {
-                query = query.Where(x => x.DateCreated.Month == month);
+                query = query.Where(x => x.Date.Month == month);
             }
 
             if (year > 0)
             {
-                query = query.Where(x => x.DateCreated.Year == year);
+                query = query.Where(x => x.Date.Year == year);
             }
 
             return query;

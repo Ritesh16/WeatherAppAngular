@@ -10,6 +10,7 @@ namespace Business.Profiles
         {
             // Source --> Target
             CreateMap<StatsOutputDto<float>, StatsOutputModel<float>>();
+            CreateMap<StatsOutputDto<string>, StatsOutputModel<string>>();
         }
     }
 }
