@@ -15,13 +15,13 @@ namespace Data.Repository
         public StatsOutputDto<float> GetColdestDayOfCity(int cityId, int month, int year)
         {
             var query = GetTemperaturesForCityQuery(cityId, month, year)
-                            .OrderBy(x => x.Max);
+                            .OrderBy(x => x.Value);
 
             var temperature = query.FirstOrDefault();
 
             if (temperature != null)
             {
-                var output = new StatsOutputDto<float>(temperature.Max, temperature.DateCreated);
+                var output = new StatsOutputDto<float>(temperature.Value, temperature.Date);
                 return output;
             }
             else
@@ -33,13 +33,13 @@ namespace Data.Repository
         public StatsOutputDto<float> GetHottestDayOfCity(int cityId, int month, int year)
         {
             var query = GetTemperaturesForCityQuery(cityId, month, year)
-                           .OrderByDescending(x => x.Max);
+                           .OrderByDescending(x => x.Value);
 
             var temperature = query.FirstOrDefault();
 
             if (temperature != null)
             {
-                var output = new StatsOutputDto<float>(temperature.Max, temperature.DateCreated);
+                var output = new StatsOutputDto<float>(temperature.Value, temperature.Date);
                 return output;
             }
             else
@@ -57,35 +57,21 @@ namespace Data.Repository
         public List<StatsOutputDto<float>> GetTopColdDaysOfCity(int cityId, int month, int year, int number)
         {
             var coldTemperatureList = GetTemperaturesForCityQuery(cityId, month, year)
-                                        .OrderBy(x => x.Max)
+                                        .OrderBy(x => x.Value)
                                         .Take(number)
                                         .ToList();
 
-            var output = new List<StatsOutputDto<float>>();
-            foreach (var coldTemperature in coldTemperatureList)
-            {
-                var statsOutputDto = new StatsOutputDto<float>(coldTemperature.Max, coldTemperature.DateCreated);
-                output.Add(statsOutputDto);
-            }
-
-            return output;
+            return coldTemperatureList;
         }
 
         public List<StatsOutputDto<float>> GetTopHotDaysOfCity(int cityId, int month, int year, int number)
         {
             var hotTemperatureList = GetTemperaturesForCityQuery(cityId, month, year)
-                                         .OrderByDescending(x => x.Max)
+                                         .OrderByDescending(x => x.Value)
                                          .Take(number)
                                          .ToList();
 
-            var output = new List<StatsOutputDto<float>>();
-            foreach (var hotTemperature in hotTemperatureList)
-            {
-                var statsOutputDto = new StatsOutputDto<float>(hotTemperature.Max, hotTemperature.DateCreated);
-                output.Add(statsOutputDto);
-            }
-
-            return output;
+            return hotTemperatureList;
         }
 
         public int GetTotalRainyDaysOfCity(int cityId, int month, int year)
@@ -104,22 +90,26 @@ namespace Data.Repository
             var cloudyDaysQuery = SearchDaysByWeatherDescriptionForCityQuery(cityId, month, year, "cloud");
             return cloudyDaysQuery.ToList();
         }
-        private IQueryable<Temperature> GetTemperaturesForCityQuery(int cityId, int month, int year)
+        private IQueryable<StatsOutputDto<float>> GetTemperaturesForCityQuery(int cityId, int month, int year)
         {
             var query = (from w in context.Weathers
                          join t in context.Temperatures
                              on w.Id equals t.WeatherId
                          where w.CityId == cityId
-                         select t);
+                         select new StatsOutputDto<float>
+                         {
+                             Date = w.WeatherDate,
+                             Value = t.Max
+                         });
 
             if (month > 0)
             {
-                query = query.Where(x => x.DateCreated.Month == month);
+                query = query.Where(x => x.Date.Month == month);
             }
 
             if (year > 0)
             {
-                query = query.Where(x => x.DateCreated.Year == year);
+                query = query.Where(x => x.Date.Year == year);
             }
 
             return query;

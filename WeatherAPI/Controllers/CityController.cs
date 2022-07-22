@@ -7,23 +7,23 @@ namespace WeatherAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CitiesController : ControllerBase
+    public class CityController : ControllerBase
     {
         private readonly ICityService cityService;
 
-        public CitiesController(ICityService cityService)
+        public CityController(ICityService cityService)
         {
             this.cityService = cityService;
         }
 
-        [HttpGet("", Name = "Cities")]
+        [HttpGet("", Name = "City")]
         public async Task<ActionResult> Get([FromQuery(Name = "names")] string[] names = null)
         {
             var cities = await cityService.GetCitiesAsync(names);
             return Ok(cities);
         }
 
-        [HttpPost("", Name = "Cities")]
+        [HttpPost("", Name = "City")]
         public async Task<ActionResult> Post([FromBody]CityModel cityModel)
         {
             if (!ModelState.IsValid)
@@ -34,7 +34,7 @@ namespace WeatherAPI.Controllers
             return Ok(await cityService.AddCityAsync(cityModel));
         }
 
-        [HttpDelete("", Name = "Cities")]
+        [HttpDelete("", Name = "City")]
         public async Task<ActionResult> Delete(int cityId)
         {
             if (cityId < 0)
