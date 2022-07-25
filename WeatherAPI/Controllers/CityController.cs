@@ -16,14 +16,30 @@ namespace WeatherAPI.Controllers
             this.cityService = cityService;
         }
 
-        [HttpGet("", Name = "City")]
+        [HttpGet]
         public async Task<ActionResult> Get([FromQuery(Name = "names")] string[] names = null)
         {
             var cities = await cityService.GetCitiesAsync(names);
             return Ok(cities);
         }
 
-        [HttpPost("", Name = "City")]
+        [HttpGet]
+        [Route("{cityId:int}")]
+        public async Task<ActionResult> Get(int cityId)
+        {
+            var city = await cityService.GetCityByIdAsync(cityId);
+            return Ok(city);
+        }
+
+        [HttpGet]
+        [Route("{cityName}")]
+        public async Task<ActionResult> Get(string cityName)
+        {
+            var city = await cityService.GetCityByNameAsync(cityName);
+            return Ok(city);
+        }
+
+        [HttpPost]
         public async Task<ActionResult> Post([FromBody]CityModel cityModel)
         {
             if (!ModelState.IsValid)
@@ -34,7 +50,7 @@ namespace WeatherAPI.Controllers
             return Ok(await cityService.AddCityAsync(cityModel));
         }
 
-        [HttpDelete("", Name = "City")]
+        [HttpDelete]
         public async Task<ActionResult> Delete(int cityId)
         {
             if (cityId < 0)

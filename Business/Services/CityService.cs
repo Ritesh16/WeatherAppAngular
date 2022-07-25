@@ -75,10 +75,24 @@ namespace Business.Services
         {
             if (cityId <= 0)
             {
-                return null;
+                throw new Exception($"Invalid city id {cityId} passed.");
             }
 
             var city = await _unitOfWork.CityRepository.GetCityById(cityId);
+            if (city == null)
+            {
+                throw new Exception($"City {cityId} not found.");
+            }
+
+            return _mapper.Map<CityModel>(city);
+        }
+        public async Task<CityModel> GetCityByNameAsync(string cityName)
+        {
+            var city = await _unitOfWork.CityRepository.GetCityByName(cityName);
+            if (city == null)
+            {
+                throw new Exception($"City {cityName} not found.");
+            }
 
             return _mapper.Map<CityModel>(city);
         }

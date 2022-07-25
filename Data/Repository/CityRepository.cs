@@ -55,5 +55,12 @@ namespace Data.Repository
         {
             return await context.Cities.FindAsync(cityId);
         }
+
+        public async Task<City> GetCityByName(string cityName)
+        {
+           return await context.Cities
+                              .Where(x => x.Name.ToLower() == cityName)
+                              .FirstOrDefaultAsync();
+        }
     }
 }
