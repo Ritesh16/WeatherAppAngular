@@ -15,14 +15,14 @@ namespace WeatherAPI.Controllers
             this.hotDayStatisticsService = hotDayStatisticsService;
         }
 
-        [HttpGet("{cityId}/{month}/{year}")]
-        public ActionResult Get(int cityId, int month, int year)
+        [HttpGet("api/City/{cityId:int}/Weather/Statistics/HottestDay/Month/{month}/Year/{year}")]
+        public ActionResult Get(int cityId, string month, int year)
         {
             return Ok(hotDayStatisticsService.GetHottestDayOfCity(cityId, month, year));
         }
 
-        [HttpGet("{cityId}/{month}/{year}/{number}")]
-        public ActionResult GetTopHotDays(int cityId, int month, int year, int number)
+        [HttpGet("api/City/{cityId:int}/Weather/Statistics/HottestDay/Month/{month}/Year/{year:int}/Top/{number:int}")]
+        public ActionResult GetTopHotDays(int cityId, string month, int year, int number)
         {
             return Ok(hotDayStatisticsService.GetTopHotDaysOfCity(cityId, month, year, number));
         }

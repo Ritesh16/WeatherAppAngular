@@ -37,28 +37,28 @@ namespace WeatherAPI.Controllers
             return Ok(await weatherHistoryService.GetWeatherHistory(cityId, month, year, day));
         }
 
-        //[HttpGet("api/City/{city}/Weather/History/Month/{month}")]
-        //public async Task<ActionResult> Get(string city, object month)
-        //{
-        //    return Ok(await weatherHistoryService.GetWeatherHistory(city, month, 0));
-        //}
+        [HttpGet("api/City/{city}/Weather/History/Month/{month}")]
+        public async Task<ActionResult> Get(string city, string month)
+        {
+            return Ok(await weatherHistoryService.GetWeatherHistory(city, month, 0));
+        }
 
-        //[HttpGet("api/City/{city}/Weather/History/Month/{month}/Year/{year:int}")]
-        //public async Task<ActionResult> Get(string city, object month, int year)
-        //{
-        //    return Ok(await weatherHistoryService.GetWeatherHistory(city, month, year));
-        //}
+        [HttpGet("api/City/{city}/Weather/History/Month/{month}/Year/{year:int}")]
+        public async Task<ActionResult> Get(string city, string month, int year)
+        {
+            return Ok(await weatherHistoryService.GetWeatherHistory(city, month, year));
+        }
 
-        //[HttpGet("api/City/{city}/Weather/History/Year/{year:int}")]
-        //public async Task<ActionResult> GetByYear(string city, int year)
-        //{
-        //    return Ok(await weatherHistoryService.GetWeatherHistory(city, 0, year));
-        //}
+        [HttpGet("api/City/{city}/Weather/History/Year/{year:int}")]
+        public async Task<ActionResult> GetByYear(string city, int year)
+        {
+            return Ok(await weatherHistoryService.GetWeatherHistory(city, 0, year));
+        }
 
-        //[HttpGet("api/City/{city}/Weather/History/Month/{month}/Day/{day:int}/Year/{year:int}")]
-        //public async Task<ActionResult> GetWeatherofDay(string city, int day, object month, int year)
-        //{
-        //    return Ok(await weatherHistoryService.GetWeatherHistory(city, month, year, day));
-        //}
+        [HttpGet("api/City/{city}/Weather/History/Month/{month}/Day/{day:int}/Year/{year:int}")]
+        public async Task<ActionResult> GetWeatherofDay(string city, int day, string month, int year)
+        {
+            return Ok(await weatherHistoryService.GetWeatherHistory(city, month, year, day));
+        }
     }
 }

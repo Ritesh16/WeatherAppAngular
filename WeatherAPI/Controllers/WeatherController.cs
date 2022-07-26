@@ -13,13 +13,6 @@ namespace WeatherAPI.Controllers
             this.weatherService = weatherService;
         }
 
-        //[HttpGet("GetByCityId")]
-        //[Route("api/Weather")]
-        //public async Task<ActionResult> Get(int cityId)
-        //{
-        //    return Ok(await weatherService.GetCityWeather(cityId));
-        //}
-
         /// <summary>
         /// Get weather by passing city id
         /// </summary>
