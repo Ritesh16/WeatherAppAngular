@@ -37,28 +37,28 @@ namespace WeatherAPI.Controllers
             return Ok(await weatherHistoryService.GetWeatherHistory(cityId, month, year, day));
         }
 
-        [HttpGet("api/City/{city}/Weather/History/Month/{month}")]
-        public async Task<ActionResult> Get(string city, string month)
+        [HttpGet("api/City/{cityName}/Weather/History/Month/{month}")]
+        public async Task<ActionResult> Get(string cityName, string month)
         {
-            return Ok(await weatherHistoryService.GetWeatherHistory(city, month, 0));
+            return Ok(await weatherHistoryService.GetWeatherHistory(cityName, month, 0));
         }
 
-        [HttpGet("api/City/{city}/Weather/History/Month/{month}/Year/{year:int}")]
-        public async Task<ActionResult> Get(string city, string month, int year)
+        [HttpGet("api/City/{cityName}/Weather/History/Month/{month}/Year/{year:int}")]
+        public async Task<ActionResult> Get(string cityName, string month, int year)
         {
-            return Ok(await weatherHistoryService.GetWeatherHistory(city, month, year));
+            return Ok(await weatherHistoryService.GetWeatherHistory(cityName, month, year));
         }
 
-        [HttpGet("api/City/{city}/Weather/History/Year/{year:int}")]
-        public async Task<ActionResult> GetByYear(string city, int year)
+        [HttpGet("api/City/{cityName}/Weather/History/Year/{year:int}")]
+        public async Task<ActionResult> GetByYear(string cityName, int year)
         {
-            return Ok(await weatherHistoryService.GetWeatherHistory(city, 0, year));
+            return Ok(await weatherHistoryService.GetWeatherHistory(cityName, 0, year));
         }
 
-        [HttpGet("api/City/{city}/Weather/History/Month/{month}/Day/{day:int}/Year/{year:int}")]
-        public async Task<ActionResult> GetWeatherofDay(string city, int day, string month, int year)
+        [HttpGet("api/City/{cityName}/Weather/History/Month/{month}/Day/{day:int}/Year/{year:int}")]
+        public async Task<ActionResult> GetWeatherofDay(string cityName, int day, string month, int year)
         {
-            return Ok(await weatherHistoryService.GetWeatherHistory(city, month, year, day));
+            return Ok(await weatherHistoryService.GetWeatherHistory(cityName, month, year, day));
         }
     }
 }

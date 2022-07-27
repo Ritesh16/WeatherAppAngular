@@ -19,6 +19,11 @@ namespace Business.Services
                 monthId = monthUtility.GetMonthId(month.ToString());
             }
 
+            if (monthId < 0)
+            {
+                throw new Exception($"Month {month.ToString()} passed is not correct.");
+            }
+
             return monthId;
         }
     }
