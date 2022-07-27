@@ -21,9 +21,9 @@ namespace Business.Services
             return new CityWeatherModel(city.Id, city.Name, weatherModel, city.State);
         }
 
-        public async Task<CityWeatherModel> GetCityWeather(string name)
+        public async Task<CityWeatherModel> GetCityWeather(string cityName)
         {
-            var city = await _cityService.GetCityByNameAsync(name);
+            var city = await _cityService.GetCityByNameAsync(cityName);
             var weatherModel = await _weatherUtility.GetWeather(city);
             return new CityWeatherModel(city.Id, city.Name, weatherModel, city.State);
         }

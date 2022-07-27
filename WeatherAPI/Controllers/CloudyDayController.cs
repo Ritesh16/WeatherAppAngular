@@ -1,10 +1,8 @@
 ﻿using Business.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WeatherAPI.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
     public class CloudyDayController : ControllerBase
     {
@@ -15,16 +13,28 @@ namespace WeatherAPI.Controllers
             this.cloudyDayStatisticsService = cloudyDayStatisticsService;
         }
 
-        [HttpGet("Total/{cityId}/{month}/{year}")]
-        public ActionResult Get(int cityId, int month, int year)
+        [HttpGet("api/City/{cityId:int}/Weather/Statistics/TotalCloudyDays/Month/{month}/Year/{year}")]
+        public ActionResult Get(int cityId, string month, int year)
         {
             return Ok(cloudyDayStatisticsService.GetTotalCloudyDaysOfCity(cityId, month, year));
         }
 
-        [HttpGet("{cityId}/{month}/{year}")]
-        public ActionResult GetTopRainyDays(int cityId, int month, int year)
+        [HttpGet("api/City/{cityId:int}/Weather/Statistics/CloudyDays/Month/{month}/Year/{year}")]
+        public ActionResult GetTopCloudyDays(int cityId, string month, int year)
         {
             return Ok(cloudyDayStatisticsService.GetCloudyDaysOfCity(cityId, month, year));
+        }
+
+        [HttpGet("api/City/{cityName}/Weather/Statistics/TotalCloudyDays/Month/{month}/Year/{year}")]
+        public ActionResult Get(string cityName, string month, int year)
+        {
+            return Ok(cloudyDayStatisticsService.GetTotalCloudyDaysOfCity(cityName, month, year));
+        }
+
+        [HttpGet("api/City/{cityName}/Weather/Statistics/CloudyDays/Month/{month}/Year/{year}")]
+        public ActionResult GetTopCloudyDays(string cityName, string month, int year)
+        {
+            return Ok(cloudyDayStatisticsService.GetCloudyDaysOfCity(cityName, month, year));
         }
     }
 }

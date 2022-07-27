@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WeatherAPI.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
     public class RainyDayController : ControllerBase
     {
@@ -15,16 +14,29 @@ namespace WeatherAPI.Controllers
             this.rainyDayStatisticsService = rainyDayStatisticsService;
         }
 
-        [HttpGet("Total/{cityId}/{month}/{year}")]
-        public ActionResult Get(int cityId, int month, int year)
+        [HttpGet("api/City/{cityId:int}/Weather/Statistics/TotalRainyDays/Month/{month}/Year/{year}")]
+        public ActionResult Get(int cityId, string month, int year)
         {
             return Ok(rainyDayStatisticsService.GetTotalRainyDaysOfCity(cityId, month, year));
         }
 
-        [HttpGet("{cityId}/{month}/{year}")]
-        public ActionResult GetTopRainyDays(int cityId, int month, int year)
+        [HttpGet("api/City/{cityName}/Weather/Statistics/TotalRainyDays/Month/{month}/Year/{year}")]
+        public ActionResult Get(string cityName, string month, int year)
+        {
+            return Ok(rainyDayStatisticsService.GetTotalRainyDaysOfCity(cityName, month, year));
+        }
+
+        [HttpGet("api/City/{cityId:int}/Weather/Statistics/RainyDays/Month/{month}/Year/{year}")]
+        public ActionResult GetTopRainyDays(int cityId, string month, int year)
         {
             return Ok(rainyDayStatisticsService.GetRainyDaysOfCity(cityId, month, year));
         }
+
+        [HttpGet("api/City/{cityName}/Weather/Statistics/RainyDays/Month/{month}/Year/{year}")]
+        public ActionResult GetTopRainyDays(string cityName, string month, int year)
+        {
+            return Ok(rainyDayStatisticsService.GetRainyDaysOfCity(cityName, month, year));
+        }
+
     }
 }

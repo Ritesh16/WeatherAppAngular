@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WeatherAPI.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
     public class ColdDayController : ControllerBase
     {
@@ -15,16 +14,27 @@ namespace WeatherAPI.Controllers
             this.coldestDayStatisticsService = coldestDayStatisticsService;
         }
 
-        [HttpGet("{cityId}/{month}/{year}")]
-        public ActionResult Get(int cityId, int month, int year)
+        [HttpGet("api/City/{cityId:int}/Weather/Statistics/ColdestDay/Month/{month}/Year/{year}")]
+        public ActionResult Get(int cityId, string month, int year)
         {
             return Ok(coldestDayStatisticsService.GetColdestDayOfCity(cityId, month, year));
         }
 
-        [HttpGet("{cityId}/{month}/{year}/{number}")]
-        public ActionResult GetTopColdDays(int cityId, int month, int year, int number)
+        [HttpGet("api/City/{cityName}/Weather/Statistics/ColdestDay/Month/{month}/Year/{year}")]
+        public ActionResult Get(string cityName, string month, int year)
+        {
+            return Ok(coldestDayStatisticsService.GetColdestDayOfCity(cityName, month, year));
+        }
+
+        [HttpGet("api/City/{cityId:int}/Weather/Statistics/ColdestDay/Month/{month}/Year/{year}/Top/{number}")]
+        public ActionResult GetTopColdDays(int cityId, string month, int year, int number)
         {
             return Ok(coldestDayStatisticsService.GetTopColdDaysOfCity(cityId, month, year, number));
+        }
+        [HttpGet("api/City/{cityName}/Weather/Statistics/ColdestDay/Month/{month}/Year/{year}/Top/{number}")]
+        public ActionResult GetTopColdDays(string cityName, string month, int year, int number)
+        {
+            return Ok(coldestDayStatisticsService.GetTopColdDaysOfCity(cityName, month, year, number));
         }
     }
 }

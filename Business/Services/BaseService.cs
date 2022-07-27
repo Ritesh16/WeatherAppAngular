@@ -13,13 +13,13 @@ namespace Business.Services
 
             var monthId = 0;
             int.TryParse(month.ToString(), out monthId);
-            if (monthId <= 0)
+            if (monthId == 0)
             {
                 var monthUtility = new MonthUtility();
                 monthId = monthUtility.GetMonthId(month.ToString());
             }
 
-            if (monthId < 0)
+            if (monthId > 12 || monthId < 0)
             {
                 throw new Exception($"Month {month.ToString()} passed is not correct.");
             }

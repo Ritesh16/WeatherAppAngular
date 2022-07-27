@@ -16,7 +16,7 @@ namespace Business.Services
             this._unitOfWork = unitOfWork;
             this._mapper = mapper;
         }
-        public async Task<IEnumerable<WeatherHistoryModel>> GetWeatherHistory(int cityId, object month, int year)
+        public async Task<IEnumerable<WeatherHistoryModel>> GetWeatherHistory(int cityId, string month, int year)
         {
             var monthId = GetMonthId(month);
 
@@ -28,7 +28,7 @@ namespace Business.Services
 
             return await GetWeatherHistory(year, monthId, city);
         }
-        public async Task<IEnumerable<WeatherHistoryModel>> GetWeatherHistory(string cityName, object month, int year)
+        public async Task<IEnumerable<WeatherHistoryModel>> GetWeatherHistory(string cityName, string month, int year)
         {
             var monthId = GetMonthId(month);
             var city = await _unitOfWork.CityRepository.GetCityByName(cityName);
@@ -36,7 +36,7 @@ namespace Business.Services
             return await GetWeatherHistory(year, monthId, city);
         }
 
-        public async Task<string> GetWeatherHistory(int cityId, object month, int year, int day)
+        public async Task<string> GetWeatherHistory(int cityId, string month, int year, int day)
         {
             var monthId = GetMonthId(month);
             var city = await _unitOfWork.CityRepository.GetCityById(cityId);
@@ -45,7 +45,7 @@ namespace Business.Services
                             .GetWeatherHistory(city.Id, new DateTime(year, monthId, day));
         }
 
-        public async Task<string> GetWeatherHistory(string cityName, object month, int year, int day)
+        public async Task<string> GetWeatherHistory(string cityName, string month, int year, int day)
         {
             var monthId = GetMonthId(month);
             var city = await _unitOfWork.CityRepository.GetCityByName(cityName);

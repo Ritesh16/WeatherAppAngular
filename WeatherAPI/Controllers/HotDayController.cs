@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WeatherAPI.Controllers
 {
-    //[Route("api/[controller]")]
     [ApiController]
     public class HotDayController : ControllerBase
     {

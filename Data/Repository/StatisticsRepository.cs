@@ -49,7 +49,7 @@ namespace Data.Repository
         public List<StatsOutputDto<string>> GetRainyDaysOfCity(int cityId, int month, int year)
         {
             var rainyDaysQuery = SearchDaysByWeatherDescriptionForCityQuery(cityId, month, year, "rain");
-            return rainyDaysQuery.ToList();
+            return rainyDaysQuery.OrderByDescending(x => x.Date).ToList();
         }
         public List<StatsOutputDto<float>> GetTopColdDaysOfCity(int cityId, int month, int year, int number)
         {
@@ -82,7 +82,7 @@ namespace Data.Repository
         public List<StatsOutputDto<string>> GetCloudyDaysOfCity(int cityId, int month, int year)
         {
             var cloudyDaysQuery = SearchDaysByWeatherDescriptionForCityQuery(cityId, month, year, "cloud");
-            return cloudyDaysQuery.ToList();
+            return cloudyDaysQuery.OrderByDescending(x => x.Date).ToList();
         }
         private IQueryable<StatsOutputDto<float>> GetTemperaturesForCityQuery(int cityId, int month, int year)
         {

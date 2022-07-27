@@ -28,7 +28,7 @@ namespace WeatherAPI.Controllers
         [HttpGet("api/City/{cityId:int}/Weather/History/Year/{year:int}")]
         public async Task<ActionResult> GetByYear(int cityId, int year)
         {
-            return Ok(await weatherHistoryService.GetWeatherHistory(cityId, 0, year));
+            return Ok(await weatherHistoryService.GetWeatherHistory(cityId, "0", year));
         }
 
         [HttpGet("api/City/{cityId:int}/Weather/History/Month/{month}/Day/{day:int}/Year/{year:int}")]
@@ -52,7 +52,7 @@ namespace WeatherAPI.Controllers
         [HttpGet("api/City/{cityName}/Weather/History/Year/{year:int}")]
         public async Task<ActionResult> GetByYear(string cityName, int year)
         {
-            return Ok(await weatherHistoryService.GetWeatherHistory(cityName, 0, year));
+            return Ok(await weatherHistoryService.GetWeatherHistory(cityName, "0", year));
         }
 
         [HttpGet("api/City/{cityName}/Weather/History/Month/{month}/Day/{day:int}/Year/{year:int}")]
