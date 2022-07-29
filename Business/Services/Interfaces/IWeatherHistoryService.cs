@@ -6,7 +6,7 @@ namespace Business.Services.Interfaces
     {
         Task<IEnumerable<WeatherHistoryModel>> GetWeatherHistory(int cityId, string month, int year);
         Task<IEnumerable<WeatherHistoryModel>> GetWeatherHistory(string cityName, string month, int year);
-        Task<string> GetWeatherHistory(int cityId, string month, int year, int day);
-        Task<string> GetWeatherHistory(string cityName, string month, int year, int day);
+        Task<CityWeatherModel> GetWeatherHistory(int cityId, string month, int year, int day);
+        Task<CityWeatherModel> GetWeatherHistory(string cityName, string month, int year, int day);
     }
 }

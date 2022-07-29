@@ -26,10 +26,10 @@ namespace Business.Utility
                     throw new Exception("Open Weather map Api configuration details not found.");
                 }
 
-                var url = $"{apiUrl}onecall?lat={cityModel.Latitude}&lon={cityModel.Longitude}&appid={key}&units=imperial";
-                var response = await client.GetStringAsync(url);
+                //var url = $"{apiUrl}onecall?lat={cityModel.Latitude}&lon={cityModel.Longitude}&appid={key}&units=imperial";
+                //var response = await client.GetStringAsync(url);
 
-                //var response = System.IO.File.ReadAllText(@"C:\Users\rites\OneDrive\Desktop\weather\output.txt");
+                var response = System.IO.File.ReadAllText(@$"C:\Users\rites\OneDrive\Desktop\weather\mock\{cityModel.Id}.txt");
 
                 if(response == null)
                 {
