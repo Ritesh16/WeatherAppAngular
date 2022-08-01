@@ -1,26 +1,7 @@
 <div class="container" style="margin-top:2%">
-    <div class="row">
-      <div class="col-6 col-sm-3">
-        <div class="card mb-3">
-          <h3 class="card-header">Middletown, DE</h3>
-          <div style="text-align:center">
-            <img alt="_photo" src="https://www.weatherbit.io/static/img/icons/c02n.png" style="width:50%">
-          </div>
-          <div class="card-body" style="text-align: center;">
-             <h5 class="card-title">Temperature: 23 °F</h5>
-             <h6 class="card-title">Few Clouds</h6>
-             <h6>AQI: 29</h6>
-             <h6>Rain: 0%</h6>
-             <h6>Snow: 0%</h6>
-          </div>
-
-          <div class="card-body">
-            <a href="#" class="card-link">Details</a>
-          </div>
-          <div class="card-footer text-muted">
-            2 days ago
-          </div>
+    <div class="row" >
+      <div class="col-6 col-sm-3" *ngFor="let weather of weathers">
+        <app-weather-card [weather]="weather"></app-weather-card>
         </div>
-    </div>
   </div>
 </div>

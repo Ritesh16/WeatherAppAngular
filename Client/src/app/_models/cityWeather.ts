@@ -16,6 +16,7 @@ export interface Weather {
     hourly: Hourly[]
     daily: Daily[]
     alerts: any[]
+    statement: string
   }
   
   export interface CurrentWeather {
