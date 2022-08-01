@@ -32,6 +32,8 @@ namespace Business.Models
         public WeatherAlertModel[] Alerts { get; set; }
 
 
+        public string Statement { get; set; }
+
         public WeatherModel()
         {
             Alerts = new WeatherAlertModel[0];
