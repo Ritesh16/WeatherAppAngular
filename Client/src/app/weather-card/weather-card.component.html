@@ -8,6 +8,6 @@
             {{weather.weatherModel.current.temp }}°F</h4>
           <h6 class="card-subtitle mb-2 text-muted">Feels like {{weather.weatherModel.current.feels_like }}°F</h6>
           <p class="card-text">{{weather.weatherModel.statement}}</p>
-          <a href="#" class="card-link">Details</a>
+          <a href="#" class="card-link" [routerLink] = "['/city', weather.cityId, 'weather']">Details</a>
         </div>
       </div>

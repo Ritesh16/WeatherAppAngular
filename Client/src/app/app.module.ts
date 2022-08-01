@@ -7,13 +7,17 @@ import { AppComponent } from './app.component';
 import { CityComponent } from './city/city.component';
 import { WeatherComponent } from './weather/weather.component';
 import { WeatherCardComponent } from './weather-card/weather-card.component';
+import { NavComponent } from './nav/nav.component';
+import { WeatherDetailsComponent } from './weather-details/weather-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CityComponent,
     WeatherComponent,
-    WeatherCardComponent
+    WeatherCardComponent,
+    NavComponent,
+    WeatherDetailsComponent
   ],
   imports: [
     BrowserModule,
