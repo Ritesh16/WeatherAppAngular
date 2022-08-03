@@ -9,7 +9,7 @@ import { WeatherService } from '../_services/weather.service';
   styleUrls: ['./weather-details.component.css']
 })
 export class WeatherDetailsComponent implements OnInit {
-  cityWeather: CityWeather;
+  weather: CityWeather;
 
   constructor(private activatedRoute: ActivatedRoute, private weatherService: WeatherService) { }
 
@@ -20,8 +20,8 @@ export class WeatherDetailsComponent implements OnInit {
   loadWeather() {
     const cityId = +this.activatedRoute.snapshot.params['id'];
     this.weatherService.getWeather(cityId).subscribe(weather => {
-      this.cityWeather = weather;
-      console.log(cityId, this.cityWeather);
+      this.weather = weather;
+      console.log(cityId, this.weather);
     });
   }
 
