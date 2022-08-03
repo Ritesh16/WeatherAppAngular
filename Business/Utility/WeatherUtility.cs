@@ -1,6 +1,7 @@
 ﻿using Business.Models;
 using Microsoft.Extensions.Configuration;
 using System.Text.Json;
+using Business.Extensions;
 
 namespace Business.Utility
 {
@@ -39,7 +40,8 @@ namespace Business.Utility
                 var model = JsonSerializer.Deserialize<WeatherModel>(response);
                 var message = GetWeatherStatement(model);
                 model.Statement = message;
-
+                model.Current.SunriseTime = model.Current.Sunrise.ToTime();
+                model.Current.SunsetTime = model.Current.Sunset.ToTime();
                 return model;
             }
         }

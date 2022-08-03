@@ -15,5 +15,9 @@ namespace Business.Models
 
         [JsonPropertyName("feels_like")]
         public new float FeelsLike { get; set; }
+
+        public string SunriseTime { get; set; }
+
+        public string SunsetTime { get; set; }
     }
 }

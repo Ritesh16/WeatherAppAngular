@@ -23,6 +23,8 @@ export interface Weather {
     dt: number
     sunrise: number
     sunset: number
+    sunriseTime: string
+    sunsetTime: string
     temp: number
     feels_like: number
     pressure: number
