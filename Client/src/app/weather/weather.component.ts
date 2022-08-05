@@ -5,6 +5,8 @@ import { concat, mergeMap, switchMap, zipAll } from 'rxjs';
 import { City } from '../_models/city';
 import { WeatherService } from '../_services/weather.service';
 import { CityService } from '../_services/city.service';
+import { SelectedCityHeaderService } from '../_services/selected-city-header.service';
+import { SelectedCityHeaderDetail } from '../_models/selectedCityHeaderDetail';
 
 @Component({
   selector: 'app-weather',
@@ -15,12 +17,13 @@ export class WeatherComponent implements OnInit {
   cities: City[] = [];
   weathers: CityWeather[] = [];
   
-  constructor(private cityService: CityService, private weatherService: WeatherService) {
+  constructor(private cityService: CityService, private weatherService: WeatherService,
+            private selectedCityHeaderService: SelectedCityHeaderService) {
 
   }
   ngOnInit(): void {
     this.loadCities();
-   
+    this.selectedCityHeaderService.setWeatherTitle(new SelectedCityHeaderDetail());
   }
 
   loadCities(){

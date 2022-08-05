@@ -9,6 +9,7 @@ import { WeatherComponent } from './weather/weather.component';
 import { WeatherCardComponent } from './weather-card/weather-card.component';
 import { NavComponent } from './nav/nav.component';
 import { WeatherDetailsComponent } from './weather-details/weather-details.component';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { WeatherDetailsComponent } from './weather-details/weather-details.compo
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    TabsModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

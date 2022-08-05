@@ -1,80 +1,101 @@
-<h3>Weather Details</h3>
-<hr />
-
-<div class="bs-docs-section" style="margin:10px">
-
-  <div class="row">
-    <div class="col-lg-4">
-      <div class="bs-component">
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">
-              {{weather.cityName}}, {{weather.stateName}}
-            </h4>
-            <h4 class="card-title">
-              <img alt="_photo" src="http://openweathermap.org/img/w/{{weather.weatherModel.current.weather[0].icon}}.png">
-              <span>{{weather.weatherModel.current.temp }}°F</span>  <span style="margin-left:10px"> {{weather.weatherModel.current.weather[0].description}}</span>
-            </h4>
-            <h6 class="card-subtitle mb-2 text-muted">Feels like {{weather.weatherModel.current.feels_like }}°F</h6>
-            <div>
-                <span><img alt="_photo" src="../assets/images/sunrise.png" style="width:8%"> {{weather.weatherModel.current.sunriseTime}} AM</span>
+<div style="margin-top: 10px;">
+  <tabset type="pills" #weatherTabs>
+    <tab heading='Weather Details'>
+      <div class="container"> 
+        <div class="bs-docs-section" style="margin:10px">
+        
+          <div class="row" *ngIf="weather">
+            <div class="col-lg-4">
+              <div class="bs-component">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">
+                      {{weather.cityName}}, {{weather.stateName}}
+                    </h4>
+                    <h4 class="card-title">
+                      <img alt="_photo" src="http://openweathermap.org/img/w/{{weather.weatherModel.current.weather[0].icon}}.png">
+                      <span>{{weather.weatherModel.current.temp }}°F</span>  <span style="margin-left:10px"> {{weather.weatherModel.current.weather[0].description}}</span>
+                    </h4>
+                    <h6 class="card-subtitle mb-2 text-muted">Feels like {{weather.weatherModel.current.feels_like }}°F</h6>
+                    <div>
+                        <span><img alt="_photo" src="../assets/images/sunrise.png" style="width:8%"> {{weather.weatherModel.current.sunriseTime}} AM</span>
+                    </div>
+                    <div style="margin-top: 5px">
+                        <span><img alt="_photo" src="../assets/images/sunset.png" style="width:8%"> {{weather.weatherModel.current.sunsetTime}} PM</span>
+                    </div>
+                  
+                  </div>
+                </div>
+              </div>
             </div>
-            <div style="margin-top: 5px">
-                <span><img alt="_photo" src="../assets/images/sunset.png" style="width:8%"> {{weather.weatherModel.current.sunsetTime}} PM</span>
+            <div class="col-lg-3">
+              <div class="bs-component">
+                <ul class="list-group">
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Pressure
+                    <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.pressure}}</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Humidity
+                    <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.humidity}}</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Dew point
+                    <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.dew_point}}</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    UVI
+                    <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.uvi}}</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Clouds
+                    <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.clouds}}</span>
+                  </li>
+                </ul>
+              </div>
             </div>
-          
+        
+            <div class="col-lg-3">
+              <div class="bs-component">
+                <ul class="list-group">
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Visibility
+                    <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.visibility}}</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Wind Speed
+                    <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.wind_speed}}</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Wind Degree
+                    <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.wind_deg}}</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Wind Gust
+                    <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.wind_gust}}</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="col-lg-3">
-      <div class="bs-component">
-        <ul class="list-group">
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            Pressure
-            <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.pressure}}</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            Humidity
-            <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.humidity}}</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            Dew point
-            <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.dew_point}}</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            UVI
-            <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.uvi}}</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            Clouds
-            <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.clouds}}</span>
-          </li>
-        </ul>
-      </div>
-    </div>
+        
+        <div style="margin-top: 25px;">
+          <h5> Rain chances in next 1 hour</h5>
+           <hr/>
+           <div>
 
-    <div class="col-lg-3">
-      <div class="bs-component">
-        <ul class="list-group">
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            Visibility
-            <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.visibility}}</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            Wind Speed
-            <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.wind_speed}}</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            Wind Degree
-            <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.wind_deg}}</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            Wind Gust
-            <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.wind_gust}}</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
+           </div>   
+        </div>
+        
+        </div>
+    </tab>
+    <tab heading='Hourly'>
+        <h4>Interests</h4>
+        <p>Hourly</p>
+    </tab>
+    <tab heading='Next few days'>
+        no
+    </tab>
+</tabset>
 </div>
