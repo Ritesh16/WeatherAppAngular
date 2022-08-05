@@ -1,12 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { TabDirective, TabsetComponent } from 'ngx-bootstrap/tabs';
 import { CityWeather } from '../_models/cityWeather';
-import { concat, mergeMap, switchMap, zipAll } from 'rxjs';
-
-import { City } from '../_models/city';
-import { WeatherService } from '../_services/weather.service';
-import { CityService } from '../_services/city.service';
-import { SelectedCityHeaderService } from '../_services/selected-city-header.service';
 import { SelectedCityHeaderDetail } from '../_models/selectedCityHeaderDetail';
+import { SelectedCityHeaderService } from '../_services/selected-city-header.service';
+import { WeatherService } from '../_services/weather.service';
+
 
 @Component({
   selector: 'app-weather',
@@ -14,27 +13,27 @@ import { SelectedCityHeaderDetail } from '../_models/selectedCityHeaderDetail';
   styleUrls: ['./weather.component.css']
 })
 export class WeatherComponent implements OnInit {
-  cities: City[] = [];
-  weathers: CityWeather[] = [];
-  
-  constructor(private cityService: CityService, private weatherService: WeatherService,
-            private selectedCityHeaderService: SelectedCityHeaderService) {
+  weather: CityWeather;
 
-  }
+  constructor(private activatedRoute: ActivatedRoute,
+             private weatherService: WeatherService,
+             private selectedCityHeaderService: SelectedCityHeaderService) { }
+
   ngOnInit(): void {
-    this.loadCities();
-    this.selectedCityHeaderService.setWeatherTitle(new SelectedCityHeaderDetail());
+    this.loadWeather();
   }
 
-  loadCities(){
-    return this.cityService.getCities().pipe(
-      switchMap((cities) => {
-       const requests = cities.map((city) => 
-       this.weatherService.getWeather(city.id));
-      return concat(requests).pipe(zipAll());
-      }
-       )).subscribe(data => {
-         this.weathers = data;
-       }); 
+  loadWeather() {
+    const cityId = +this.activatedRoute.snapshot.params['id'];
+    this.weatherService.getWeather(cityId).subscribe(weather => {
+      this.weather = weather;
+
+      const selectedCityHeaderDetail = new SelectedCityHeaderDetail();
+      selectedCityHeaderDetail.cityName = weather.cityName;
+      selectedCityHeaderDetail.dateTime = weather.dateTime;
+      selectedCityHeaderDetail.temp = this.weather.weatherModel.current.temp;
+      selectedCityHeaderDetail.icon = this.weather.weatherModel.current.weather[0].icon;
+      this.selectedCityHeaderService.selectedCityHeaderDetailEvent.emit(selectedCityHeaderDetail);
+    });
   }
 }
