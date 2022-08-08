@@ -42,6 +42,9 @@ namespace Business.Utility
                 model.Statement = message;
                 model.Current.SunriseTime = model.Current.Sunrise.ToTime();
                 model.Current.SunsetTime = model.Current.Sunset.ToTime();
+
+                model.RainCheckNextHour = model.Minutely.Any(x => x.Precipitation > 0);
+
                 return model;
             }
         }

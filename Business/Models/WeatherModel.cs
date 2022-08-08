@@ -33,6 +33,7 @@ namespace Business.Models
 
 
         public string Statement { get; set; }
+        public bool RainCheckNextHour { get; set; }
 
         public WeatherModel()
         {

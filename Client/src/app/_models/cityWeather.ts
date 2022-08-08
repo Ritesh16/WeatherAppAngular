@@ -17,6 +17,7 @@ export interface Weather {
     daily: Daily[]
     alerts: any[]
     statement: string
+    rainCheckNextHour: boolean
   }
   
   export interface CurrentWeather {

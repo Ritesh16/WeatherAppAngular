@@ -1,4 +1,4 @@
-<div style="margin-top: 10px;">
+<div style="margin-top: 10px;" *ngIf="weather">
   <tabset type="pills" #weatherTabs>
     <tab heading='Weather Details'>
       <div class="container"> 
@@ -19,11 +19,12 @@
                     <h6 class="card-subtitle mb-2 text-muted">Feels like {{weather.weatherModel.current.feels_like }}°F</h6>
                     <div>
                         <span><img alt="_photo" src="../assets/images/sunrise.png" style="width:8%"> {{weather.weatherModel.current.sunrise | convertToTime}}</span>
+                        <span><img alt="_photo" src="../assets/images/moonrise.png" style="width:8%; margin-left: 45px;"> {{weather.weatherModel.daily[0].moonrise | convertToTime}}</span>
                     </div>
                     <div style="margin-top: 5px">
                         <span><img alt="_photo" src="../assets/images/sunset.png" style="width:8%"> {{weather.weatherModel.current.sunset | convertToTime}}</span>
+                        <span><img alt="_photo" src="../assets/images/moonset.png" style="width:8%; margin-left: 45px;"> {{weather.weatherModel.daily[0].moonset | convertToTime}}</span>
                     </div>
-                  
                   </div>
                 </div>
               </div>
@@ -31,6 +32,14 @@
             <div class="col-lg-3">
               <div class="bs-component">
                 <ul class="list-group">
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Max
+                    <span class="badge bg-primary rounded-pill">{{weather.weatherModel.daily[0].temp.max}}°F</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Min
+                    <span class="badge bg-primary rounded-pill">{{weather.weatherModel.daily[0].temp.min}}°F</span>
+                  </li>
                   <li class="list-group-item d-flex justify-content-between align-items-center">
                     Pressure
                     <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.pressure | convertToHg}}</span>
@@ -47,10 +56,7 @@
                     UVI
                     <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.uvi}}</span>
                   </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Clouds
-                    <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.clouds | convertToPerc}}</span>
-                  </li>
+                 
                 </ul>
               </div>
             </div>
@@ -58,6 +64,10 @@
             <div class="col-lg-3">
               <div class="bs-component">
                 <ul class="list-group">
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Clouds
+                    <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.clouds | convertToPerc}}</span>
+                  </li>
                   <li class="list-group-item d-flex justify-content-between align-items-center">
                     Visibility
                     <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.visibility | convertToMiles}}</span>
@@ -74,7 +84,66 @@
                     Wind Gust
                     <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.wind_gust}} m/hr</span>
                   </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Moon Phase
+                    <span class="badge bg-primary rounded-pill">{{weather.weatherModel.daily[0].moon_phase}}</span>
+                  </li>
                 </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="bs-component">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">
+                    Morning
+                  </h4>
+                  <h5>{{weather.weatherModel.daily[0].temp.morn}}°F</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Feels like {{weather.weatherModel.daily[0].feels_like.morn }}°F</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="bs-component">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">
+                    Day
+                  </h4>
+                  <h5>{{weather.weatherModel.daily[0].temp.day}}°F</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Feels like {{weather.weatherModel.daily[0].feels_like.day }}°F</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="bs-component">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">
+                    Evening
+                  </h4>
+                  <h5>{{weather.weatherModel.daily[0].temp.eve}}°F</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Feels like {{weather.weatherModel.daily[0].feels_like.eve }}°F</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="bs-component">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">
+                    Night
+                  </h4>
+                  <h5>{{weather.weatherModel.daily[0].temp.night}}°F</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Feels like {{weather.weatherModel.daily[0].feels_like.night }}°F</h6>
+                </div>
               </div>
             </div>
           </div>
@@ -84,12 +153,22 @@
           <h5> Rain chances in next 1 hour</h5>
            <hr/>
            <div>
-            <div class="row" >
+            <div class="row" *ngIf="weather.weatherModel.rainCheckNextHour">
               <div class="col-6 col-sm-2" *ngFor="let minutelyPrep of weather.weatherModel.minutely">
                 <div class="card" style="margin-bottom: 5px;">
                   <div class="card-body">
                     <p class="card-text">{{minutelyPrep.dt | convertToTime}}</p>
                     <p class="card-text">{{minutelyPrep.precipitation}} mm</p>
+                  </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="!weather.weatherModel.rainCheckNextHour">
+              <div class="col-6 col-sm-12" >
+                <div class="card" style="margin-bottom: 5px;">
+                  <div class="card-body">
+                    <p class="card-text">No rain in next hour.</p>
                   </div>
                 </div>
                 </div>

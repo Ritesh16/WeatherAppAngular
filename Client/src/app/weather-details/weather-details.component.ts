@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CityWeather } from '../_models/cityWeather';
-import { ConvertToDatePipe} from '../_pipes/convert-to-date.pipe';
 
 @Component({
   selector: 'app-weather-details',
@@ -13,6 +12,7 @@ export class WeatherDetailsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }
