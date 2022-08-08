@@ -1,6 +1,6 @@
 export class SelectedCityHeaderDetail { 
     cityName?: string;
-    dateTime?: string;
+    dateTime: number;
     temp?: number;
     icon?: string;
     constructor() {

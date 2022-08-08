@@ -11,6 +11,11 @@ import { NavComponent } from './nav/nav.component';
 import { WeatherDetailsComponent } from './weather-details/weather-details.component';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { HomeComponent } from './home/home.component';
+import { ConvertToDatePipe } from './_pipes/convert-to-date.pipe';
+import { ConvertToTimePipe } from './_pipes/convert-to-time.pipe';
+import { ConvertToHgPipe } from './_pipes/convert-to-hg.pipe';
+import { ConvertToPercPipe } from './_pipes/convert-to-perc.pipe';
+import { ConvertToMilesPipe } from './_pipes/convert-to-miles.pipe';
 
 @NgModule({
   declarations: [
@@ -20,7 +25,12 @@ import { HomeComponent } from './home/home.component';
     WeatherCardComponent,
     NavComponent,
     WeatherDetailsComponent,
-    HomeComponent
+    HomeComponent,
+    ConvertToDatePipe,
+    ConvertToTimePipe,
+    ConvertToHgPipe,
+    ConvertToPercPipe,
+    ConvertToMilesPipe
   ],
   imports: [
     BrowserModule,

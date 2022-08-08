@@ -17,7 +17,7 @@
           <img style="height:35px" alt="_photo" src="http://openweathermap.org/img/w/{{selectedCityHeaderDetail.icon}}.png" />
           <span style = "color: white;"> {{selectedCityHeaderDetail.cityName}}</span>
           <span style = "color: white;margin-left: 15px;"> {{selectedCityHeaderDetail.temp}} °F</span>
-          <span style="color:white; margin-left: 15px;">{{selectedCityHeaderDetail.dateTime|date}}</span>
+          <span style="color:white; margin-left: 15px;">{{selectedCityHeaderDetail.dateTime|convertToDate|date}}</span>
         </div>
      </div>
 

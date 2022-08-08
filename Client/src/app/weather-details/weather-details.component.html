@@ -18,10 +18,10 @@
                     </h4>
                     <h6 class="card-subtitle mb-2 text-muted">Feels like {{weather.weatherModel.current.feels_like }}°F</h6>
                     <div>
-                        <span><img alt="_photo" src="../assets/images/sunrise.png" style="width:8%"> {{weather.weatherModel.current.sunriseTime}} AM</span>
+                        <span><img alt="_photo" src="../assets/images/sunrise.png" style="width:8%"> {{weather.weatherModel.current.sunrise | convertToTime}}</span>
                     </div>
                     <div style="margin-top: 5px">
-                        <span><img alt="_photo" src="../assets/images/sunset.png" style="width:8%"> {{weather.weatherModel.current.sunsetTime}} PM</span>
+                        <span><img alt="_photo" src="../assets/images/sunset.png" style="width:8%"> {{weather.weatherModel.current.sunset | convertToTime}}</span>
                     </div>
                   
                   </div>
@@ -33,11 +33,11 @@
                 <ul class="list-group">
                   <li class="list-group-item d-flex justify-content-between align-items-center">
                     Pressure
-                    <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.pressure}}</span>
+                    <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.pressure | convertToHg}}</span>
                   </li>
                   <li class="list-group-item d-flex justify-content-between align-items-center">
                     Humidity
-                    <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.humidity}}</span>
+                    <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.humidity | convertToPerc}}</span>
                   </li>
                   <li class="list-group-item d-flex justify-content-between align-items-center">
                     Dew point
@@ -49,7 +49,7 @@
                   </li>
                   <li class="list-group-item d-flex justify-content-between align-items-center">
                     Clouds
-                    <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.clouds}}</span>
+                    <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.clouds | convertToPerc}}</span>
                   </li>
                 </ul>
               </div>
@@ -60,19 +60,19 @@
                 <ul class="list-group">
                   <li class="list-group-item d-flex justify-content-between align-items-center">
                     Visibility
-                    <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.visibility}}</span>
+                    <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.visibility | convertToMiles}}</span>
                   </li>
                   <li class="list-group-item d-flex justify-content-between align-items-center">
                     Wind Speed
-                    <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.wind_speed}}</span>
+                    <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.wind_speed}} m/hr</span>
                   </li>
                   <li class="list-group-item d-flex justify-content-between align-items-center">
                     Wind Degree
-                    <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.wind_deg}}</span>
+                    <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.wind_deg}}°</span>
                   </li>
                   <li class="list-group-item d-flex justify-content-between align-items-center">
                     Wind Gust
-                    <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.wind_gust}}</span>
+                    <span class="badge bg-primary rounded-pill">{{weather.weatherModel.current.wind_gust}} m/hr</span>
                   </li>
                 </ul>
               </div>
@@ -84,7 +84,17 @@
           <h5> Rain chances in next 1 hour</h5>
            <hr/>
            <div>
-
+            <div class="row" >
+              <div class="col-6 col-sm-2" *ngFor="let minutelyPrep of weather.weatherModel.minutely">
+                <div class="card" style="margin-bottom: 5px;">
+                  <div class="card-body">
+                    <p class="card-text">{{minutelyPrep.dt | convertToTime}}</p>
+                    <p class="card-text">{{minutelyPrep.precipitation}} mm</p>
+                  </div>
+                </div>
+                </div>
+            </div>
+           
            </div>   
         </div>
         

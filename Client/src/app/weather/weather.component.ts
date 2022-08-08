@@ -30,7 +30,7 @@ export class WeatherComponent implements OnInit {
 
       const selectedCityHeaderDetail = new SelectedCityHeaderDetail();
       selectedCityHeaderDetail.cityName = weather.cityName;
-      selectedCityHeaderDetail.dateTime = weather.dateTime;
+      selectedCityHeaderDetail.dateTime = this.weather.weatherModel.current.dt;
       selectedCityHeaderDetail.temp = this.weather.weatherModel.current.temp;
       selectedCityHeaderDetail.icon = this.weather.weatherModel.current.weather[0].icon;
       this.selectedCityHeaderService.selectedCityHeaderDetailEvent.emit(selectedCityHeaderDetail);
