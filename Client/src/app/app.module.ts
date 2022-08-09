@@ -16,6 +16,11 @@ import { ConvertToTimePipe } from './_pipes/convert-to-time.pipe';
 import { ConvertToHgPipe } from './_pipes/convert-to-hg.pipe';
 import { ConvertToPercPipe } from './_pipes/convert-to-perc.pipe';
 import { ConvertToMilesPipe } from './_pipes/convert-to-miles.pipe';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { WeatherAlertsComponent } from './weather-alerts/weather-alerts.component';
+import { ConvertToDatetimePipe } from './_pipes/convert-to-datetime.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
 
 @NgModule({
   declarations: [
@@ -30,13 +35,18 @@ import { ConvertToMilesPipe } from './_pipes/convert-to-miles.pipe';
     ConvertToTimePipe,
     ConvertToHgPipe,
     ConvertToPercPipe,
-    ConvertToMilesPipe
+    ConvertToMilesPipe,
+    WeatherAlertsComponent,
+    ConvertToDatetimePipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    TabsModule.forRoot()
+    BrowserAnimationsModule,
+    TabsModule.forRoot(),
+    ModalModule.forRoot(),
+    AccordionModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

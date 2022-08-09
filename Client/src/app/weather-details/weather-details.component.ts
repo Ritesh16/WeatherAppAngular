@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CityWeather } from '../_models/cityWeather';
 
+import { getBsVer, IBsVersion } from 'ngx-bootstrap/utils';
+
 @Component({
   selector: 'app-weather-details',
   templateUrl: './weather-details.component.html',
@@ -9,10 +11,11 @@ import { CityWeather } from '../_models/cityWeather';
 export class WeatherDetailsComponent implements OnInit {
   @Input() weather: CityWeather;
 
-  constructor() { }
-
   ngOnInit(): void {
 
+  }
+  get _getBsVer(): IBsVersion {
+    return getBsVer();
   }
 
 }

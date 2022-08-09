@@ -15,7 +15,7 @@ export interface Weather {
     minutely: Minutely[]
     hourly: Hourly[]
     daily: Daily[]
-    alerts: any[]
+    alerts: Alerts[]
     statement: string
     rainCheckNextHour: boolean
   }
@@ -107,4 +107,11 @@ export interface Weather {
     morn: number
   }
 
-  
+  export interface Alerts {
+    sender_name: string;
+    event: string;
+    start: number;
+    end: number;
+    description: string;
+    tags: string[];
+  }

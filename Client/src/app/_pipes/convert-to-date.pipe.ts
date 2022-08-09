@@ -7,8 +7,8 @@ import { DatePipe } from '@angular/common';
 export class ConvertToDatePipe implements PipeTransform {
 
   transform(value: number, ...args: unknown[]): string {
-const date = new Date(value*1000);
-const output=date.toLocaleDateString("en-US");
+    const date = new Date(value*1000);
+    const output=date.toLocaleDateString("en-US");
     return output;
   }
 

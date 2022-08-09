@@ -1,3 +1,4 @@
+<app-weather-alerts [alerts]="weather.weatherModel.alerts"></app-weather-alerts>
 <div style="margin-top: 10px;" *ngIf="weather">
   <tabset type="pills" #weatherTabs>
     <tab heading='Weather Details'>
@@ -180,8 +181,7 @@
         </div>
     </tab>
     <tab heading='Hourly'>
-        <h4>Interests</h4>
-        <p>Hourly</p>
+       Hourly
     </tab>
     <tab heading='Next few days'>
         no
