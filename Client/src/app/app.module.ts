@@ -22,6 +22,7 @@ import { ConvertToDatetimePipe } from './_pipes/convert-to-datetime.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { HourlyWeatherDetailsComponent } from './hourly-weather-details/hourly-weather-details.component';
+import { ConvertToDateStringPipe } from './_pipes/convert-to-date-string.pipe';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { HourlyWeatherDetailsComponent } from './hourly-weather-details/hourly-w
     ConvertToMilesPipe,
     WeatherAlertsComponent,
     ConvertToDatetimePipe,
-    HourlyWeatherDetailsComponent
+    HourlyWeatherDetailsComponent,
+    ConvertToDateStringPipe
   ],
   imports: [
     BrowserModule,

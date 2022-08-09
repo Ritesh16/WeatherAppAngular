@@ -4,7 +4,7 @@
         <div *ngIf="(hour.dt | convertToTime) == '12:00 AM'" class="btn btn-block justify-content-between d-flex w-100  shadow-none"
         accordion-heading type="button">
           <div class="pull-left float-left">
-            <strong>{{hour.dt | convertToDate}}</strong>
+            <strong>{{hour.dt | convertToDateString}}</strong>
           </div>
         </div>
         
