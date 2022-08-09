@@ -4,7 +4,6 @@
     <tab heading='Weather Details'>
       <div class="container"> 
         <div class="bs-docs-section" style="margin:10px">
-        
           <div class="row" *ngIf="weather">
             <div class="col-lg-4">
               <div class="bs-component">
@@ -181,7 +180,7 @@
         </div>
     </tab>
     <tab heading='Hourly'>
-       Hourly
+      <app-hourly-weather-details [hourlyWeatherDetails] = "weather.weatherModel.hourly"></app-hourly-weather-details>
     </tab>
     <tab heading='Next few days'>
         no

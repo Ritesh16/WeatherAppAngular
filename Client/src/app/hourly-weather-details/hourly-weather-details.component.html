@@ -1,0 +1,77 @@
+<div style="margin-top:10px">
+    <accordion>
+      <accordion-group *ngFor="let hour of hourlyWeatherDetails">
+        <div *ngIf="(hour.dt | convertToTime) == '12:00 AM'" class="btn btn-block justify-content-between d-flex w-100  shadow-none"
+        accordion-heading type="button">
+          <div class="pull-left float-left">
+            <strong>{{hour.dt | convertToDate}}</strong>
+          </div>
+        </div>
+        
+        <div
+          class="btn btn-block justify-content-between d-flex w-100  shadow-none"
+          accordion-heading type="button">
+          <div class="pull-left float-left">
+            <span style="min-width:150px;  display: inline-block; text-align:center">{{hour.dt | convertToTime }}</span>
+            <span style="min-width: 180px;  display: inline-block; text-align:center">
+              {{hour.temp}}°F
+            </span>
+            <span style="min-width: 350px;  display: inline-block; text-align:center"> 
+              <img alt="_photo" src="http://openweathermap.org/img/w/{{hour.weather[0].icon}}.png" />
+              <span>{{hour.weather[0].description}}</span>
+            </span>
+            <span style="min-width:270px;  display: inline-block; text-align:left">Cloud cover  {{hour.clouds | convertToPerc }}</span>
+            <span style="min-width:250px;  display: inline-block; text-align:left">
+              <img alt="_photo" src="../assets/images/rain.png" style="width: 7%;" />
+              Rain
+              {{hour.pop*100 | convertToPerc}}
+            </span>
+          </div>
+        </div>
+       <div>
+        <div class="card">
+          <div class="card-body">
+            <div class="pull-left float-left">
+              <span style="min-width:275px;  display: inline-block; text-align:center">
+                <img alt="_photo" src="../assets/images/temp.png" style="width: 10%;" />
+                Feels like {{ hour.feels_like }}°F
+              </span>
+              <span style="min-width: 275px;  display: inline-block; text-align:center;">
+                <img alt="_photo" src="../assets/images/uv.png"  />
+                UV {{hour.uvi}}
+              </span>
+              <span style="min-width:275px;  display: inline-block; text-align:center">
+                <img alt="_photo" src="../assets/images/humidity.png" style="width:10%"/>
+                Humidity
+                {{hour.humidity | convertToPerc}}
+              </span>
+              <span style="max-width: 275px;  display: inline-block; text-align:center;">
+                <img alt="_photo" src="../assets/images/pressure.png" style="width: 9%;" />
+                Pressure {{hour.pressure | convertToHg}}
+              </span>
+            </div>
+            <hr />
+            <div class="pull-left float-left">
+              <span style="min-width:300px;  display: inline-block; text-align:center">
+                <img alt="_photo" src="../assets/images/wind.png" style="width: 10%;" />
+                Wind Speed {{ hour.wind_speed }} miles/hr
+              </span>
+              <span style="min-width: 260px;  display: inline-block; text-align:center;">
+                <img alt="_photo" src="../assets/images/direction.png"  />
+                Wind Degree {{hour.wind_deg}}°
+              </span>
+              <span style="min-width:300px;  display: inline-block; text-align:center">
+                <img alt="_photo" src="../assets/images/gust.png" style="width:10%"/>
+                Wind Gust
+                {{hour.wind_gust}} miles/hr
+              </span>
+              <span style="min-width: 195px;  display: inline-block; text-align:center;">
+                Visibility {{hour.visibility | convertToMiles}}
+              </span>
+            </div>
+          </div>
+        </div>
+       </div>
+      </accordion-group>
+    </accordion>
+  </div>

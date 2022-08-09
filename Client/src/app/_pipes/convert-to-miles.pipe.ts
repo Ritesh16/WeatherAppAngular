@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class ConvertToMilesPipe implements PipeTransform {
 
   transform(value: number, ...args: unknown[]): unknown {
-    return (value * 0.000621371) + ' miles';
+    return Math.round(value * 0.000621371) + ' miles';
   }
 
 }
