@@ -1,0 +1,122 @@
+<div style="margin-top:10px">
+    <accordion>
+      <accordion-group *ngFor="let daily of dailyWeatherDetails">
+        <div
+          class="btn btn-block justify-content-between d-flex w-100  shadow-none"
+          accordion-heading type="button">
+          <div class="pull-left float-left">
+            <span style="min-width:150px;  display: inline-block; text-align:center">{{daily.dt | convertToDate }}</span>
+            <span style="min-width: 180px;  display: inline-block; text-align:center">
+              {{daily.temp.max}}° / {{daily.temp.min}}°
+            </span>
+            <span style="min-width: 350px;  display: inline-block; text-align:center"> 
+              <img alt="_photo" src="http://openweathermap.org/img/w/{{daily.weather[0].icon}}.png" />
+              <span>{{daily.weather[0].description}}</span>
+            </span>
+            <span style="min-width:270px;  display: inline-block; text-align:left">Cloud cover  {{daily.clouds | convertToPerc }}</span>
+            <span style="min-width:250px;  display: inline-block; text-align:left">
+              <img alt="_photo" src="../assets/images/rain.png" style="width: 7%;" />
+              Rain
+              {{daily.pop*100 | convertToPerc}}
+            </span>
+          </div>
+        </div>
+        <!-- <div class="row" >
+            <div class="col-6 col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                      <div class="pull-left float-left">
+                        <span style="min-width:275px;  display: inline-block; text-align:center">
+                          <img alt="_photo" src="../assets/images/temp.png" style="width: 10%;" />
+                          Feels like {{ hour.feels_like }}°F
+                        </span>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+       <!-- <div>
+        <div class="card">
+          <div class="card-body">
+            <div class="pull-left float-left">
+              <span style="min-width:275px;  display: inline-block; text-align:center">
+                <img alt="_photo" src="../assets/images/temp.png" style="width: 10%;" />
+                Feels like {{ hour.feels_like }}°F
+              </span>
+              <span style="min-width: 275px;  display: inline-block; text-align:center;">
+                <img alt="_photo" src="../assets/images/uv.png"  />
+                UV {{hour.uvi}}
+              </span>
+              <span style="min-width:275px;  display: inline-block; text-align:center">
+                <img alt="_photo" src="../assets/images/humidity.png" style="width:10%"/>
+                Humidity
+                {{hour.humidity | convertToPerc}}
+              </span>
+              <span style="max-width: 275px;  display: inline-block; text-align:center;">
+                <img alt="_photo" src="../assets/images/pressure.png" style="width: 9%;" />
+                Pressure {{hour.pressure | convertToHg}}
+              </span>
+            </div>
+            <hr />
+            <div class="pull-left float-left">
+              <span style="min-width:300px;  display: inline-block; text-align:center">
+                <img alt="_photo" src="../assets/images/wind.png" style="width: 10%;" />
+                Wind Speed {{ hour.wind_speed }} miles/hr
+              </span>
+              <span style="min-width: 260px;  display: inline-block; text-align:center;">
+                <img alt="_photo" src="../assets/images/direction.png"  />
+                Wind Degree {{hour.wind_deg}}°
+              </span>
+              <span style="min-width:300px;  display: inline-block; text-align:center">
+                <img alt="_photo" src="../assets/images/gust.png" style="width:10%"/>
+                Wind Gust
+                {{hour.wind_gust}} miles/hr
+              </span>
+              
+            </div>
+          </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+              <div class="pull-left float-left">
+                <span style="min-width:275px;  display: inline-block; text-align:center">
+                  <img alt="_photo" src="../assets/images/temp.png" style="width: 10%;" />
+                  Feels like {{ hour.feels_like }}°F
+                </span>
+                <span style="min-width: 275px;  display: inline-block; text-align:center;">
+                  <img alt="_photo" src="../assets/images/uv.png"  />
+                  UV {{hour.uvi}}
+                </span>
+                <span style="min-width:275px;  display: inline-block; text-align:center">
+                  <img alt="_photo" src="../assets/images/humidity.png" style="width:10%"/>
+                  Humidity
+                  {{hour.humidity | convertToPerc}}
+                </span>
+                <span style="max-width: 275px;  display: inline-block; text-align:center;">
+                  <img alt="_photo" src="../assets/images/pressure.png" style="width: 9%;" />
+                  Pressure {{hour.pressure | convertToHg}}
+                </span>
+              </div>
+              <hr />
+              <div class="pull-left float-left">
+                <span style="min-width:300px;  display: inline-block; text-align:center">
+                  <img alt="_photo" src="../assets/images/wind.png" style="width: 10%;" />
+                  Wind Speed {{ hour.wind_speed }} miles/hr
+                </span>
+                <span style="min-width: 260px;  display: inline-block; text-align:center;">
+                  <img alt="_photo" src="../assets/images/direction.png"  />
+                  Wind Degree {{hour.wind_deg}}°
+                </span>
+                <span style="min-width:300px;  display: inline-block; text-align:center">
+                  <img alt="_photo" src="../assets/images/gust.png" style="width:10%"/>
+                  Wind Gust
+                  {{hour.wind_gust}} miles/hr
+                </span>
+                
+              </div>
+            </div>
+          </div>
+       </div> -->
+      </accordion-group>
+    </accordion>
+  </div>

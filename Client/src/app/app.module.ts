@@ -23,6 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { HourlyWeatherDetailsComponent } from './hourly-weather-details/hourly-weather-details.component';
 import { ConvertToDateStringPipe } from './_pipes/convert-to-date-string.pipe';
+import { DailyWeatherDetailsComponent } from './daily-weather-details/daily-weather-details.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ConvertToDateStringPipe } from './_pipes/convert-to-date-string.pipe';
     WeatherAlertsComponent,
     ConvertToDatetimePipe,
     HourlyWeatherDetailsComponent,
-    ConvertToDateStringPipe
+    ConvertToDateStringPipe,
+    DailyWeatherDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -183,7 +183,7 @@
       <app-hourly-weather-details [hourlyWeatherDetails] = "weather.weatherModel.hourly"></app-hourly-weather-details>
     </tab>
     <tab heading='Next few days'>
-        no
+        <app-daily-weather-details [dailyWeatherDetails]="weather.weatherModel.daily"></app-daily-weather-details>
     </tab>
 </tabset>
 </div>
