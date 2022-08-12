@@ -89,6 +89,7 @@ export interface Weather {
     pop: number
     uvi: number
     rain?: number
+    visibility: number;
   }
   
   export interface Temp {

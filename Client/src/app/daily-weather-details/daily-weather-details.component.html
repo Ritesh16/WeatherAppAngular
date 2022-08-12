@@ -21,102 +21,123 @@
             </span>
           </div>
         </div>
-        <!-- <div class="row" >
-            <div class="col-6 col-sm-4">
-                <div class="card">
-                    <div class="card-body">
-                      <div class="pull-left float-left">
-                        <span style="min-width:275px;  display: inline-block; text-align:center">
-                          <img alt="_photo" src="../assets/images/temp.png" style="width: 10%;" />
-                          Feels like {{ hour.feels_like }}°F
-                        </span>
-                      </div>
-                    </div>
+        <div class="row">
+          <div class="col-6 col-sm-6" >
+            <div class="card">
+              <div class="card-body">
+                <h4 style="text-align:center">
+                  <img alt="_photo" src="../assets/images/sunrise.png" style="width: 7%;" /> Day
+                </h4>
+                <div>
+                  <div class="pull-left float-left">
+                    <span style="display: inline-block; text-align:left">
+                      <img alt="_photo" src="../assets/images/temp.png" style="width: 20%;" />
+                      Morning {{daily.temp.morn}}°F
+                    </span>
+                    <span style="text-align:left;" class="text-muted">
+                      Feels like {{daily.feels_like.morn}}°F
+                    </span>
+                    <span style="display: inline-block; text-align:left; margin-left: 50px;">
+                      Day {{daily.temp.day}}°F
+                    </span>
+                    <span style="text-align:left; margin-left: 5px;" class="text-muted">
+                      Feels like {{daily.feels_like.day}}°F
+                    </span>
+                  </div>
+                  <hr/>
+                  <div class="pull-left float-left">
+                    <span style="display: inline-block; text-align:right; margin-left: 5%;">
+                     Sunrise {{daily.sunrise | convertToTime}}
+                    </span>
+                    <span style="display: inline-block; text-align:right; margin-left: 50%;">
+                      Sunset {{daily.sunset | convertToTime}}
+                    </span>
+                  </div>
+
+                  
                 </div>
-            </div>
-        </div> -->
-       <!-- <div>
-        <div class="card">
-          <div class="card-body">
-            <div class="pull-left float-left">
-              <span style="min-width:275px;  display: inline-block; text-align:center">
-                <img alt="_photo" src="../assets/images/temp.png" style="width: 10%;" />
-                Feels like {{ hour.feels_like }}°F
-              </span>
-              <span style="min-width: 275px;  display: inline-block; text-align:center;">
-                <img alt="_photo" src="../assets/images/uv.png"  />
-                UV {{hour.uvi}}
-              </span>
-              <span style="min-width:275px;  display: inline-block; text-align:center">
-                <img alt="_photo" src="../assets/images/humidity.png" style="width:10%"/>
-                Humidity
-                {{hour.humidity | convertToPerc}}
-              </span>
-              <span style="max-width: 275px;  display: inline-block; text-align:center;">
-                <img alt="_photo" src="../assets/images/pressure.png" style="width: 9%;" />
-                Pressure {{hour.pressure | convertToHg}}
-              </span>
-            </div>
-            <hr />
-            <div class="pull-left float-left">
-              <span style="min-width:300px;  display: inline-block; text-align:center">
-                <img alt="_photo" src="../assets/images/wind.png" style="width: 10%;" />
-                Wind Speed {{ hour.wind_speed }} miles/hr
-              </span>
-              <span style="min-width: 260px;  display: inline-block; text-align:center;">
-                <img alt="_photo" src="../assets/images/direction.png"  />
-                Wind Degree {{hour.wind_deg}}°
-              </span>
-              <span style="min-width:300px;  display: inline-block; text-align:center">
-                <img alt="_photo" src="../assets/images/gust.png" style="width:10%"/>
-                Wind Gust
-                {{hour.wind_gust}} miles/hr
-              </span>
-              
+                  
+              </div>
             </div>
           </div>
+          <div class="col-6 col-sm-6" >
+            <div class="card">
+              <div class="card-body">
+                <h4 style="text-align:center">
+                  <img alt="_photo" src="../assets/images/sunset.png" style="width: 7%;" /> Night
+                </h4>
+                <div class="pull-left float-left">
+                  <span style="display: inline-block; text-align:left">
+                    <img alt="_photo" src="../assets/images/temp.png" style="width: 20%;" />
+                    Evening {{daily.temp.eve}}°F
+                  </span>
+                  <span style="text-align:left;" class="text-muted">
+                    Feels like {{daily.feels_like.eve}}°F
+                  </span>
+                  <span style="display: inline-block; text-align:left; margin-left: 5%;">
+                    Night {{daily.temp.night}}°F
+                  </span>
+                  <span style="text-align:left; margin-left: 2%;" class="text-muted">
+                    Feels like {{daily.feels_like.night}}°F
+                  </span>
+                </div>
+                <hr/>
+                <div class="pull-left float-left">
+                  <span style="display: inline-block; text-align:right; margin-left: 5%;">
+                   Moonrise {{daily.moonrise | convertToTime}}
+                  </span>
+                  <span style="display: inline-block; text-align:right; margin-left: 8%;">
+                    Moonset {{daily.moonset | convertToTime}}
+                  </span>
+                  <span style="display: inline-block; text-align:right; margin-left: 8%;">
+                    Moon phase {{daily.moon_phase}}
+                  </span>
+                </div>
+              </div>
+            </div>
         </div>
-        <div class="card">
+        <div>
+          <div class="card">
             <div class="card-body">
               <div class="pull-left float-left">
-                <span style="min-width:275px;  display: inline-block; text-align:center">
-                  <img alt="_photo" src="../assets/images/temp.png" style="width: 10%;" />
-                  Feels like {{ hour.feels_like }}°F
-                </span>
-                <span style="min-width: 275px;  display: inline-block; text-align:center;">
+                <span style="min-width: 25%;  display: inline-block; text-align:center;">
                   <img alt="_photo" src="../assets/images/uv.png"  />
-                  UV {{hour.uvi}}
+                  UV {{daily.uvi}}
                 </span>
-                <span style="min-width:275px;  display: inline-block; text-align:center">
+                <span style="min-width:25%;  display: inline-block; text-align:center">
                   <img alt="_photo" src="../assets/images/humidity.png" style="width:10%"/>
                   Humidity
-                  {{hour.humidity | convertToPerc}}
+                  {{daily.humidity | convertToPerc}}
                 </span>
-                <span style="max-width: 275px;  display: inline-block; text-align:center;">
+                <span style="max-width:25%;  display: inline-block; text-align:center;">
                   <img alt="_photo" src="../assets/images/pressure.png" style="width: 9%;" />
-                  Pressure {{hour.pressure | convertToHg}}
+                  Pressure {{daily.pressure | convertToHg}}
+                </span>
+                <span style="min-width:25%;  display: inline-block; text-align:center;">
+                  Visibility {{daily.visibility | convertToMiles}}
                 </span>
               </div>
-              <hr />
+              <hr/>
               <div class="pull-left float-left">
-                <span style="min-width:300px;  display: inline-block; text-align:center">
+                <span style="min-width:30%;  display: inline-block; text-align:center">
                   <img alt="_photo" src="../assets/images/wind.png" style="width: 10%;" />
-                  Wind Speed {{ hour.wind_speed }} miles/hr
+                  Wind Speed {{ daily.wind_speed }} miles/hr
                 </span>
-                <span style="min-width: 260px;  display: inline-block; text-align:center;">
+                <span style="min-width:30%;  display: inline-block; text-align:center;">
                   <img alt="_photo" src="../assets/images/direction.png"  />
-                  Wind Degree {{hour.wind_deg}}°
+                  Wind Degree {{daily.wind_deg}}°
                 </span>
-                <span style="min-width:300px;  display: inline-block; text-align:center">
+                <span style="min-width:30%;  display: inline-block; text-align:center">
                   <img alt="_photo" src="../assets/images/gust.png" style="width:10%"/>
                   Wind Gust
-                  {{hour.wind_gust}} miles/hr
+                  {{daily.wind_gust}} miles/hr
                 </span>
-                
+
               </div>
-            </div>
           </div>
-       </div> -->
+         </div>
+      </div>
+        </div>
       </accordion-group>
     </accordion>
   </div>
