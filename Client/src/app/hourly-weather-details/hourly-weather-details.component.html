@@ -1,5 +1,5 @@
 <div style="margin-top:10px">
-    <accordion>
+    <accordion [isAnimated]="true">
       <accordion-group *ngFor="let hour of hourlyWeatherDetails">
         <div *ngIf="(hour.dt | convertToTime) == '12:00 AM'" class="btn btn-block justify-content-between d-flex w-100  shadow-none"
         accordion-heading type="button">
