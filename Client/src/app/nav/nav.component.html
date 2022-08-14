@@ -10,7 +10,7 @@
              <a class="nav-link" href="#">Statistics</a>
            </li>
            <li class="nav-item" *ngIf="selectedCityHeaderDetail && selectedCityHeaderDetail.cityName">
-             <a class="nav-link" href="#" >History</a>
+             <a class="nav-link" href="#" routerLink='/weather-history'>History</a>
            </li> 
          </ul>
          <div *ngIf="selectedCityHeaderDetail && selectedCityHeaderDetail.cityName">

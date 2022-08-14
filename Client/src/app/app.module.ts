@@ -24,6 +24,7 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { HourlyWeatherDetailsComponent } from './hourly-weather-details/hourly-weather-details.component';
 import { ConvertToDateStringPipe } from './_pipes/convert-to-date-string.pipe';
 import { DailyWeatherDetailsComponent } from './daily-weather-details/daily-weather-details.component';
+import { WeatherHistoryComponent } from './weather-history/weather-history.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { DailyWeatherDetailsComponent } from './daily-weather-details/daily-weat
     ConvertToDatetimePipe,
     HourlyWeatherDetailsComponent,
     ConvertToDateStringPipe,
-    DailyWeatherDetailsComponent
+    DailyWeatherDetailsComponent,
+    WeatherHistoryComponent
   ],
   imports: [
     BrowserModule,
