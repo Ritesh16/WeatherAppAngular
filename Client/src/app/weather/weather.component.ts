@@ -33,7 +33,8 @@ export class WeatherComponent implements OnInit {
       selectedCityHeaderDetail.dateTime = this.weather.weatherModel.current.dt;
       selectedCityHeaderDetail.temp = this.weather.weatherModel.current.temp;
       selectedCityHeaderDetail.icon = this.weather.weatherModel.current.weather[0].icon;
-      this.selectedCityHeaderService.selectedCityHeaderDetailEvent.emit(selectedCityHeaderDetail);
+      selectedCityHeaderDetail.cityId = weather.cityId;
+      this.selectedCityHeaderService.setWeatherTitle(selectedCityHeaderDetail);
     });
   }
 }

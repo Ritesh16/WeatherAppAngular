@@ -3,6 +3,7 @@ export class SelectedCityHeaderDetail {
     dateTime: number;
     temp?: number;
     icon?: string;
+    cityId?: number;
     constructor() {
 
     }
