@@ -3,6 +3,8 @@ import { SearchParamns } from '../_models/searchParams';
 import { SelectedCityHeaderService } from '../_services/selected-city-header.service';
 import { take } from 'rxjs/operators';
 import { SelectedCityHeaderDetail } from '../_models/selectedCityHeaderDetail';
+import { WeatherHistoryService } from '../_services/weather-history.service';
+import { WeatherHistory } from '../_models/weatherHistory';
 
 @Component({
   selector: 'app-weather-history',
@@ -11,6 +13,7 @@ import { SelectedCityHeaderDetail } from '../_models/selectedCityHeaderDetail';
 })
 export class WeatherHistoryComponent implements OnInit {
 selectedCity: SelectedCityHeaderDetail;
+weatherHistoryList: WeatherHistory[];
 
   months =  [
     { Value: 0, Text: '--All--' },
@@ -39,24 +42,28 @@ selectedCity: SelectedCityHeaderDetail;
 
   searchParams: SearchParamns;
 
-  constructor(private selectedCityHeaderService: SelectedCityHeaderService) { 
+  constructor(private selectedCityHeaderService: SelectedCityHeaderService,
+            private weatherHistoryService: WeatherHistoryService) { 
     this.searchParams = new SearchParamns();
     this.selectedCityHeaderService.currentCity$.pipe(take(1)).subscribe(city => {
-      this.selectedCity = city;
-      console.log(1, this.selectedCity.cityName);
+    this.selectedCity = city;
     });
+
+    this.loadWeatherHistory();
   }
 
   ngOnInit(): void {
   }
 
   loadWeatherHistory() {
-    console.log(this.searchParams);
-    console.log('load weather');
+    const cityId = this.selectedCity.cityId == null ? 0 : this.selectedCity.cityId;
+    this.weatherHistoryService.getWeatherHistoryByCityId(cityId, 
+            this.searchParams.month, this.searchParams.year)
+            .subscribe(response => {
+              this.weatherHistoryList = response;
+            });
   }
   resetFilters(){
     this.searchParams = new SearchParamns();
-    console.log(this.searchParams);
-    console.log('Reset');
   }
 }

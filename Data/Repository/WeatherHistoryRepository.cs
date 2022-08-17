@@ -25,7 +25,8 @@ namespace Data.Repository
                              Description = wd.Description,
                              Main = wd.Main,
                              Humidity = w.Humidity,
-                             Temp = t.Day,
+                             Max = t.Max,
+                             Min = t.Min,
                              Icon = wd.Icon,
                              Date = w.WeatherDate
                          });
