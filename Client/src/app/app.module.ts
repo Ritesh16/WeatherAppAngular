@@ -26,6 +26,7 @@ import { ConvertToDateStringPipe } from './_pipes/convert-to-date-string.pipe';
 import { DailyWeatherDetailsComponent } from './daily-weather-details/daily-weather-details.component';
 import { WeatherHistoryComponent } from './weather-history/weather-history.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { WeatherHistoryDetailsComponent } from './weather-history-details/weather-history-details.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HourlyWeatherDetailsComponent,
     ConvertToDateStringPipe,
     DailyWeatherDetailsComponent,
-    WeatherHistoryComponent
+    WeatherHistoryComponent,
+    WeatherHistoryDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -47,7 +47,9 @@
           </div>
         </td>
         <td>{{weatherHistory.description}}</td>
-        <td><a class="card-link">Details</a></td>
+        <td>
+          <a class="card-link" [routerLink] = "['/city', weatherHistory.cityId, 'weather-history', weatherHistory.date]">Details</a>
+        </td>
       </tr>
     </tbody>
   </table>

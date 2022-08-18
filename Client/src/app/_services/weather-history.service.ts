@@ -46,7 +46,7 @@ baseUrl = environment.apiUrl;
   }
 
   getWeatherHistoryOfDayByCityId(cityId: number, month: number, day: number, year: number) {
-    let url = this.baseUrl + 'city/' + cityId + '/weather/history/';
+    let url = this.baseUrl + 'city/' + cityId + '/weather/history';
     if(month > 0) {
       url = url + '/month/' + month;
     }
