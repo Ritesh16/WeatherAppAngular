@@ -2,13 +2,14 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a [routerLink] = "['/weather-history']">History</a></li>
         <li class="breadcrumb-item"><a href="#">{{weather.cityName}}</a></li>
-        <li class="breadcrumb-item active">{{weather.dateTime | date}}</li>
+        <li class="breadcrumb-item active">Weather saved on {{weather.dateTime | date : 'medium'}}</li>
     </ol>
     
     <app-weather-alerts [alerts]="weather.weatherModel.alerts"></app-weather-alerts>
     <div>
         <app-weather-details *ngIf="weather" [weather]="weather"></app-weather-details>
     </div>
+    <h5 style="margin-top: 1%;">Hourly Updates</h5>
     <div>
         <app-hourly-weather-details [hourlyWeatherDetails]="weather.weatherModel.hourly"></app-hourly-weather-details>
     </div>    

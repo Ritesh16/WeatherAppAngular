@@ -42,34 +42,34 @@ namespace Business.Services
             var monthId = GetMonthId(month);
             var city = await _unitOfWork.CityRepository.GetCityById(cityId);
 
-            var json = await _unitOfWork.WeatherHistoryRepository
+            var rawWeather = await _unitOfWork.WeatherHistoryRepository
                             .GetWeatherHistory(city.Id, new DateTime(year, monthId, day));
 
-            if (string.IsNullOrEmpty(json))
+            if (rawWeather == null)
             {
                 throw new Exception($"Weather history not available for {month}/{day}/{year}");
             }
 
-            var weatherModel = JsonSerializer.Deserialize<WeatherModel>(json);
+            var weatherModel = JsonSerializer.Deserialize<WeatherModel>(rawWeather.Json);
 
-            return new CityWeatherModel(city.Id, city.Name, weatherModel, city.State, new DateTime(year, monthId, day));
+            return new CityWeatherModel(city.Id, city.Name, weatherModel, city.State, rawWeather.Date);
         }
 
         public async Task<CityWeatherModel> GetWeatherHistory(string cityName, string month, int year, int day)
         {
             var monthId = GetMonthId(month);
             var city = await _unitOfWork.CityRepository.GetCityByName(cityName);
-            var json = await _unitOfWork.WeatherHistoryRepository
+            var rawWeather = await _unitOfWork.WeatherHistoryRepository
                             .GetWeatherHistory(city.Id, new DateTime(year, monthId, day));
 
-            if (string.IsNullOrEmpty(json))
+            if (rawWeather == null)
             {
                 throw new Exception($"Weather history not available for {month}/{day}/{year}");
             }
 
-            var weatherModel = JsonSerializer.Deserialize<WeatherModel>(json);
+            var weatherModel = JsonSerializer.Deserialize<WeatherModel>(rawWeather.Json);
 
-            return new CityWeatherModel(city.Id, city.Name, weatherModel, city.State, new DateTime(year, monthId, day));
+            return new CityWeatherModel(city.Id, city.Name, weatherModel, city.State, rawWeather.Date);
         }
         private async Task<IEnumerable<WeatherHistoryModel>> GetWeatherHistory(int year, int monthId, City city)
         {

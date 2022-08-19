@@ -46,14 +46,14 @@ namespace Data.Repository
             return data;
         }
 
-        public async Task<string> GetWeatherHistory(int cityId, DateTime date)
+        public async Task<RawWeatherDto> GetWeatherHistory(int cityId, DateTime date)
         {
             var rawWeather = await context.RawWeathers.FirstOrDefaultAsync(x => x.CityId == cityId &&
                                             x.DateCreated.Day == date.Day &&
                                             x.DateCreated.Month == date.Month &&
                                             x.DateCreated.Year == date.Year);
 
-            return rawWeather.WeatherJson;
+            return new RawWeatherDto(rawWeather.DateCreated, rawWeather.WeatherJson);
         }
     }
 }
