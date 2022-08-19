@@ -1,0 +1,27 @@
+<div style="margin-top: 25px;">
+    <h5> Rain chances in next 1 hour</h5>
+     <hr/>
+     <div>
+      <div class="row" *ngIf="weather.weatherModel.rainCheckNextHour">
+        <div class="col-6 col-sm-2" *ngFor="let minutelyPrep of weather.weatherModel.minutely">
+          <div class="card" style="margin-bottom: 5px;">
+            <div class="card-body">
+              <p class="card-text">{{minutelyPrep.dt | convertToTime}}</p>
+              <p class="card-text">{{minutelyPrep.precipitation}} mm</p>
+            </div>
+          </div>
+          </div>
+      </div>
+
+      <div class="row" *ngIf="!weather.weatherModel.rainCheckNextHour">
+        <div class="col-6 col-sm-12" >
+          <div class="card" style="margin-bottom: 5px;">
+            <div class="card-body">
+              <p class="card-text">No rain in next hour.</p>
+            </div>
+          </div>
+          </div>
+      </div>
+     
+     </div>   
+  </div>

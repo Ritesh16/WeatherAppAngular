@@ -52,7 +52,7 @@ namespace Business.Services
 
             var weatherModel = JsonSerializer.Deserialize<WeatherModel>(json);
 
-            return new CityWeatherModel(city.Id, city.Name, weatherModel, city.State);
+            return new CityWeatherModel(city.Id, city.Name, weatherModel, city.State, new DateTime(year, monthId, day));
         }
 
         public async Task<CityWeatherModel> GetWeatherHistory(string cityName, string month, int year, int day)
@@ -69,7 +69,7 @@ namespace Business.Services
 
             var weatherModel = JsonSerializer.Deserialize<WeatherModel>(json);
 
-            return new CityWeatherModel(city.Id, city.Name, weatherModel, city.State);
+            return new CityWeatherModel(city.Id, city.Name, weatherModel, city.State, new DateTime(year, monthId, day));
         }
         private async Task<IEnumerable<WeatherHistoryModel>> GetWeatherHistory(int year, int monthId, City city)
         {

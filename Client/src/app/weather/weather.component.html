@@ -1,1 +1,15 @@
-<app-weather-details [weather]="weather"></app-weather-details>
+<app-weather-alerts [alerts]="weather.weatherModel.alerts"></app-weather-alerts>
+<div style="margin-top: 10px;" *ngIf="weather">
+  <tabset type="pills" #weatherTabs>
+    <tab heading='Weather Details'>
+     <app-weather-details [weather]="weather"></app-weather-details>
+     <app-hourly-rain-check [weather]="weather"></app-hourly-rain-check>
+    </tab>
+    <tab heading='Hourly'>
+      <app-hourly-weather-details [hourlyWeatherDetails] = "weather.weatherModel.hourly"></app-hourly-weather-details>
+    </tab>
+    <tab heading='Next few days'>
+        <app-daily-weather-details [dailyWeatherDetails]="weather.weatherModel.daily"></app-daily-weather-details>
+    </tab>
+</tabset>
+</div>

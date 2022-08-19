@@ -16,5 +16,14 @@
             StateName = stateName;
             DateTime = DateTime.Now;
         }
+
+        public CityWeatherModel(int cityId, string cityName, WeatherModel weatherModel, string stateName, DateTime date)
+        {
+            CityId = cityId;
+            CityName = cityName;
+            WeatherModel = weatherModel;
+            StateName = stateName;
+            DateTime = date;
+        }
     }
 }

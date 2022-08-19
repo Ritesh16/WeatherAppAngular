@@ -34,7 +34,6 @@ export class WeatherHistoryDetailsComponent implements OnInit {
       this.weatherHistoryService.getWeatherHistoryOfDayByCityId(cityId, month, day, year)
         .subscribe(response => {
           this.weather = response;
-          console.log(1, this.weather);
       });
         
   }
