@@ -10,7 +10,7 @@
             <a class="nav-link" routerLinkActive='active' [routerLink] = "['/city', selectedCityHeaderDetail.cityId, 'weather']">Weather Details</a>
           </li>
            <li class="nav-item" *ngIf="selectedCityHeaderDetail && selectedCityHeaderDetail.cityName">
-             <a class="nav-link" routerLinkActive='active' routerLink='/weather-history'>Statistics</a>
+             <a class="nav-link" routerLinkActive='active' routerLink='/weather-statistics'>Statistics</a>
            </li>
            <li class="nav-item" *ngIf="selectedCityHeaderDetail && selectedCityHeaderDetail.cityName">
              <a class="nav-link" routerLinkActive='active' routerLink='/weather-history'>History</a>
