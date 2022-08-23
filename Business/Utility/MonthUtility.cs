@@ -13,6 +13,9 @@
 
             switch (month)
             {
+                case "0":
+                    return 0;
+
                 case "january":
                         return 1;
 

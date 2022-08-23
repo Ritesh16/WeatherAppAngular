@@ -31,6 +31,19 @@ namespace WeatherAPI.Controllers
             return Ok(await weatherHistoryService.GetWeatherHistory(cityId, "0", year));
         }
 
+        [HttpGet("api/City/{cityId:int}/Weather/History/Year")]
+        public async Task<ActionResult> GetWeatherHistory(int cityId)
+        {
+            return Ok(await weatherHistoryService.GetWeatherHistory(cityId, "0", 0));
+        }
+
+
+        [HttpGet("api/City/{cityName}/Weather/History/Year")]
+        public async Task<ActionResult> GetWeatherHistory(string cityName)
+        {
+            return Ok(await weatherHistoryService.GetWeatherHistory(cityName, "0", 0));
+        }
+
         [HttpGet("api/City/{cityId:int}/Weather/History/Month/{month}/Day/{day:int}/Year/{year:int}")]
         public async Task<ActionResult> GetWeatherofDay(int cityId, int day, string month, int year)
         {
