@@ -1,1 +1,30 @@
-<p>weather-statistics works!</p>
+<div class="container mt-3">
+    <form #form="ngForm" class="form-inline mb-3" (ngSubmit) = "loadWeatherHistory()" autocomplete="off">
+        <div class="container">
+            <div class="row">
+              <div class="col">
+                <select name="month"  [(ngModel)] = "searchParams.month" class="form-control ml-1">
+                    <option *ngFor="let month of months" [ngValue]="month.Value">
+                        {{month.Text}}
+                    </option>
+                </select>
+              </div>
+
+              <div class="col">
+                <select name="year"  [(ngModel)] = "searchParams.year" class="form-control ml-1">
+                    <option *ngFor="let year of years" [ngValue]="year.Value">
+                        {{year.Text}}
+                    </option>
+                </select>
+                  </div>
+              <div class="col-6">
+                <button class="btn btn-primary ml-1" type="submit" style="margin-right:1%">Search</button>
+                <button (click) = "resetFilters()" class="btn btn-info ml-1" type="submit">Reset</button>
+               </div>
+            </div>
+          </div>
+    </form>
+</div>
+<hr/>
+
+<app-cloudy-days [month]="searchParams.month" [year]="searchParams.year"></app-cloudy-days>

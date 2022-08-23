@@ -29,6 +29,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { WeatherHistoryDetailsComponent } from './weather-history-details/weather-history-details.component';
 import { HourlyRainCheckComponent } from './hourly-rain-check/hourly-rain-check.component';
 import { WeatherStatisticsComponent } from './weather-statistics/weather-statistics.component';
+import { CloudyDaysComponent } from './cloudy-days/cloudy-days.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { WeatherStatisticsComponent } from './weather-statistics/weather-statist
     WeatherHistoryComponent,
     WeatherHistoryDetailsComponent,
     HourlyRainCheckComponent,
-    WeatherStatisticsComponent
+    WeatherStatisticsComponent,
+    CloudyDaysComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,22 @@
+<div class="container"> 
+    <div class="bs-docs-section" style="margin:10px">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="bs-component">
+            <div class="card center">
+              <div class="card-body center">
+                <h4 class="card-title">
+                  Cloudy Days
+                </h4>
+                <h3>{{totalCloudyDays}}</h3>
+              </div>
+              <div *ngFor="let cloudyDay of cloudyDays">
+                 <a class="card-link" [routerLink] = "['/city', selectedCity.cityId, 'weather-history', cloudyDay.date]">{{cloudyDay.date|date}}</a>
+                 ({{cloudyDay.value}})
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
