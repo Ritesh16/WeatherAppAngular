@@ -48,7 +48,7 @@ namespace Data.Repository
         }
         public List<StatsOutputDto<string>> GetRainyDaysOfCity(int cityId, int month, int year)
         {
-            var rainyDaysQuery = SearchDaysByWeatherDescriptionForCityQuery(cityId, month, year, "rain");
+            var rainyDaysQuery = SearchDaysByWeatherDescriptionForCityQuery(cityId, month, year, new string[] { "moderate rain", "heavy intensity rain" });
             return rainyDaysQuery.OrderByDescending(x => x.Date).ToList();
         }
         public List<StatsOutputDto<float>> GetTopColdDaysOfCity(int cityId, int month, int year, int number)
@@ -71,17 +71,17 @@ namespace Data.Repository
         }
         public int GetTotalRainyDaysOfCity(int cityId, int month, int year)
         {
-            var rainyDays = SearchDaysByWeatherDescriptionForCityQuery(cityId, month, year, "rain");
+            var rainyDays = SearchDaysByWeatherDescriptionForCityQuery(cityId, month, year, new string[] { "moderate rain", "heavy intensity rain" });
             return rainyDays.Count();
         }
         public int GetTotalCloudyDaysOfCity(int cityId, int month, int year)
         {
-            var cloudyDays = SearchDaysByWeatherDescriptionForCityQuery(cityId, month, year, "cloud");
+            var cloudyDays = SearchDaysByWeatherDescriptionForCityQuery(cityId, month, year, new string[] { "scattered clouds",  "few clouds", "overcast clouds", "broken clouds" });
             return cloudyDays.Count();
         }
         public List<StatsOutputDto<string>> GetCloudyDaysOfCity(int cityId, int month, int year)
         {
-            var cloudyDaysQuery = SearchDaysByWeatherDescriptionForCityQuery(cityId, month, year, "cloud");
+            var cloudyDaysQuery = SearchDaysByWeatherDescriptionForCityQuery(cityId, month, year,  new string[] { "scattered clouds", "few clouds", "overcast clouds", "broken clouds" });
             return cloudyDaysQuery.OrderByDescending(x => x.Date).ToList();
         }
         private IQueryable<StatsOutputDto<float>> GetTemperaturesForCityQuery(int cityId, int month, int year)
@@ -108,13 +108,14 @@ namespace Data.Repository
 
             return query;
         }
-        private IQueryable<StatsOutputDto<string>> SearchDaysByWeatherDescriptionForCityQuery(int cityId, int month, int year, string searchWord)
+
+        private IQueryable<StatsOutputDto<string>> SearchDaysByWeatherDescriptionForCityQuery(int cityId, int month, int year, string[] searchWords)
         {
             var query = (from w in context.Weathers
                          join wd in context.WeatherDescriptions
                              on w.Id equals wd.WeatherId
                          where w.CityId == cityId &&
-                               wd.Description.Contains(searchWord)
+                               searchWords.Contains(wd.Description)
                          select new StatsOutputDto<string>
                          {
                              Date = w.WeatherDate,

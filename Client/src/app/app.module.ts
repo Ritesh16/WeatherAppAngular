@@ -30,6 +30,7 @@ import { WeatherHistoryDetailsComponent } from './weather-history-details/weathe
 import { HourlyRainCheckComponent } from './hourly-rain-check/hourly-rain-check.component';
 import { WeatherStatisticsComponent } from './weather-statistics/weather-statistics.component';
 import { CloudyDaysComponent } from './cloudy-days/cloudy-days.component';
+import { RainyDaysComponent } from './rainy-days/rainy-days.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { CloudyDaysComponent } from './cloudy-days/cloudy-days.component';
     WeatherHistoryDetailsComponent,
     HourlyRainCheckComponent,
     WeatherStatisticsComponent,
-    CloudyDaysComponent
+    CloudyDaysComponent,
+    RainyDaysComponent
   ],
   imports: [
     BrowserModule,

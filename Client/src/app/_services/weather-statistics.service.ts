@@ -16,8 +16,16 @@ export class WeatherStatisticsService {
   getTotalCloudyDays(cityId: number, month: number, year: number) {
     return this.http.get<number>(this.baseUrl + 'city/' + cityId + '/Weather/Statistics/TotalCloudyDays/Month/' + month +  '/Year/' + year);
   }
+
+  getTotalRainyDays(cityId: number, month: number, year: number) {
+    return this.http.get<number>(this.baseUrl + 'city/' + cityId + '/Weather/Statistics/TotalRainyDays/Month/' + month +  '/Year/' + year);
+  }
   
   getCloudyDays(cityId: number, month: number, year: number) {
     return this.http.get<Statistics[]>(this.baseUrl + 'city/' + cityId + '/Weather/Statistics/CloudyDays/Month/' + month +  '/Year/' + year);
+  }
+
+  getRainyDays(cityId: number, month: number, year: number) {
+    return this.http.get<Statistics[]>(this.baseUrl + 'city/' + cityId + '/Weather/Statistics/RainyDays/Month/' + month +  '/Year/' + year);
   }
 }

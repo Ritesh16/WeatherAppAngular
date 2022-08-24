@@ -1,0 +1,22 @@
+<div class="card center">
+    <div class="card-body center">
+      <h4 class="card-title">
+        Rainy Days
+      </h4>
+      <h3>{{totalRainyDays}}</h3>
+    </div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let rainyDay of rainyDays">
+          <th scope="row"><a class="card-link" [routerLink] = "['/city', selectedCity.cityId, 'weather-history', rainyDay.date]">{{rainyDay.date|date}}</a></th>
+          <td>{{rainyDay.value}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

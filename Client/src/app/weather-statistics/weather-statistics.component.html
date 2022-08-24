@@ -27,4 +27,19 @@
 </div>
 <hr/>
 
-<app-cloudy-days [month]="searchParams.month" [year]="searchParams.year"></app-cloudy-days>
+<div class="container"> 
+  <div class="bs-docs-section" style="margin:10px">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="bs-component">
+          <app-cloudy-days [month]="searchParams.month" [year]="searchParams.year"></app-cloudy-days>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="bs-component">
+          <app-rainy-days [month]="searchParams.month" [year]="searchParams.year"></app-rainy-days>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
