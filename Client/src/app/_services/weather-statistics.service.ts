@@ -28,4 +28,21 @@ export class WeatherStatisticsService {
   getRainyDays(cityId: number, month: number, year: number) {
     return this.http.get<Statistics[]>(this.baseUrl + 'city/' + cityId + '/Weather/Statistics/RainyDays/Month/' + month +  '/Year/' + year);
   }
+
+  getColdestDay(cityId: number, month: number, year: number) {
+    return this.http.get<Statistics>(this.baseUrl + 'city/' + cityId + '/Weather/Statistics/ColdestDay/Month/' + month +  '/Year/' + year);
+  }
+
+  getTopColdDays(cityId: number, month: number, year: number, top: number) {
+    return this.http.get<Statistics[]>(this.baseUrl + 'city/' + cityId + '/Weather/Statistics/ColdestDay/Month/' + month +  '/Year/' + year + '/Top/' + top);
+  }
+
+  getHottestDay(cityId: number, month: number, year: number) {
+    return this.http.get<Statistics>(this.baseUrl + 'city/' + cityId + '/Weather/Statistics/HottestDay/Month/' + month +  '/Year/' + year);
+  }
+
+  getTopHotDays(cityId: number, month: number, year: number, top: number) {
+    return this.http.get<Statistics[]>(this.baseUrl + 'city/' + cityId + '/Weather/Statistics/HottestDay/Month/' + month +  '/Year/' + year + '/Top/' + top);
+  }
+
 }

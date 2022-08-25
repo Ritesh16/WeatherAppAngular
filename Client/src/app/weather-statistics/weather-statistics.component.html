@@ -32,6 +32,18 @@
     <div class="row">
       <div class="col-lg-6">
         <div class="bs-component">
+          <app-cold-days [month]="searchParams.month" [year]="searchParams.year"></app-cold-days>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="bs-component">
+          <app-hot-days></app-hot-days>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="bs-component">
           <app-cloudy-days [month]="searchParams.month" [year]="searchParams.year"></app-cloudy-days>
         </div>
       </div>

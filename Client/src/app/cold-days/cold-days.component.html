@@ -1,0 +1,30 @@
+<div class="card center">
+    <div class="card-body center">
+      <h4 class="card-title">
+        Coldest Day
+      </h4>
+      <table class="table table-hover">
+        <thead>
+        </thead>
+        <tbody>
+          <tr *ngIf="coldestDay && coldestDay.value > 0">
+            <th scope="row"><a class="card-link" [routerLink] = "['/city', selectedCity.cityId, 'weather-history', coldestDay.date]">{{coldestDay.date|date}}</a></th>
+            <td>{{coldestDay.value}}</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <h4 class="card-title">
+        Top 5 cold days
+      </h4>
+      <table class="table table-hover">
+      <thead>
+      </thead>
+      <tbody>
+        <tr *ngFor="let coldDay of topColdDays">
+          <th scope="row"><a class="card-link" [routerLink] = "['/city', selectedCity.cityId, 'weather-history', coldDay.date]">{{coldDay.date|date}}</a></th>
+          <td>{{coldDay.value}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
