@@ -1,1 +1,30 @@
-<p>hot-days works!</p>
+<div class="card center">
+    <div class="card-body center">
+      <h4 class="card-title">
+        Hottest Day
+      </h4>
+      <table class="table table-hover">
+        <thead>
+        </thead>
+        <tbody>
+          <tr *ngIf="hottestDay && hottestDay.value > 0">
+            <th scope="row"><a class="card-link" [routerLink] = "['/city', selectedCity.cityId, 'weather-history', hottestDay.date]">{{hottestDay.date|date}}</a></th>
+            <td>{{hottestDay.value}}</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <h4 class="card-title">
+        Top 5 hot days
+      </h4>
+      <table class="table table-hover">
+      <thead>
+      </thead>
+      <tbody>
+        <tr *ngFor="let hotDay of topHotDays">
+          <th scope="row"><a class="card-link" [routerLink] = "['/city', selectedCity.cityId, 'weather-history', hotDay.date]">{{hotDay.date|date}}</a></th>
+          <td>{{hotDay.value}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

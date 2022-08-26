@@ -55,6 +55,7 @@ namespace Data.Repository
         {
             var coldTemperatureList = GetTemperaturesForCityQuery(cityId, month, year)
                                         .OrderBy(x => x.Value)
+                                        .Skip(1)
                                         .Take(number)
                                         .ToList();
 
@@ -64,6 +65,7 @@ namespace Data.Repository
         {
             var hotTemperatureList = GetTemperaturesForCityQuery(cityId, month, year)
                                          .OrderByDescending(x => x.Value)
+                                         .Skip(1)
                                          .Take(number)
                                          .ToList();
 

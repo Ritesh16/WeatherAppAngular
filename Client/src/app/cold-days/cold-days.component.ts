@@ -4,6 +4,7 @@ import { SelectedCityHeaderService } from '../_services/selected-city-header.ser
 import { WeatherStatisticsService } from '../_services/weather-statistics.service';
 import { take } from 'rxjs/operators';
 import { Statistics } from '../_models/statistics';
+
 @Component({
   selector: 'app-cold-days',
   templateUrl: './cold-days.component.html',
