@@ -33,6 +33,7 @@ import { CloudyDaysComponent } from './cloudy-days/cloudy-days.component';
 import { RainyDaysComponent } from './rainy-days/rainy-days.component';
 import { ColdDaysComponent } from './cold-days/cold-days.component';
 import { HotDaysComponent } from './hot-days/hot-days.component';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { HotDaysComponent } from './hot-days/hot-days.component';
     FormsModule,
     TabsModule.forRoot(),
     ModalModule.forRoot(),
-    AccordionModule.forRoot()
+    AccordionModule.forRoot(),
+    TypeaheadModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

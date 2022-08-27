@@ -30,7 +30,7 @@ namespace Business.Services
                 var maxCities = Convert.ToInt32(_configuration["MaxCount"]);
                 var count = await _unitOfWork.CityRepository.GetTotalCities();
 
-                if (maxCities >= count)
+                if (maxCities <= count)
                 {
                     outputModel.Status = false;
                     outputModel.Output = false;
