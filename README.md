@@ -1,0 +1,1 @@
+--It is a weather forecasting app which allow users to see the conditions, forecasting and temperature of the cities
