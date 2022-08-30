@@ -26,8 +26,8 @@ namespace Data.Repository
         public async Task<bool> CityExists(City city)
         {
             return await context.Cities
-                        .AnyAsync(x => x.Name.ToLower() == city.Name &&
-                                    x.State.ToLower() == city.State);
+                        .AnyAsync(x => x.Name.ToLower() == city.Name.ToLower() &&
+                                    x.State.ToLower() == city.State.ToLower());
         }
 
         public void RemoveCity(int cityId)

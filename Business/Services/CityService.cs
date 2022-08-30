@@ -51,7 +51,7 @@ namespace Business.Services
             }
 
             outputModel.Status = true;
-            outputModel.Message = $"City {city.Name}, {city.State} added successfully.";
+            outputModel.Message = $"City {city.Name}, {city.State} already exists.";
             outputModel.Output = !cityExists;
             return outputModel;
         }

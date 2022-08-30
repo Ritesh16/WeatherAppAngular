@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:7080/api/'
-
+  apiUrl: 'https://localhost:7080/api/',
+  key: '55ae37407b50fe9921672a4207926235'
 };
 
 /*

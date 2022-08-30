@@ -5,6 +5,7 @@ import { City } from '../_models/city';
 import { noop, Observable, Observer, of } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { SearchCity } from '../_models/searchCity';
+import { Output } from '../_models/output';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,6 @@ export class CityService {
   }
 
   saveCity(city: City) {
-    return this.http.post(this.baseUrl + 'city/', city);
+    return this.http.post<Output<City>>(this.baseUrl + 'city/', city);
   }
 }

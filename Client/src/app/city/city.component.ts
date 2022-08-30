@@ -68,13 +68,16 @@ export class CityComponent implements OnInit {
       city.state = this.newCity.state;
       
       this.cityService.saveCity(city).subscribe(response => {
-        if(response){
+        this.search = '';[]
+        if(response.output){
           this.successMessage = "City saved successfully.";
           this.errorMessage = "";
+          this.newCity = {} as SearchCity;
         }
         else{
           this.successMessage = "";
-          this.errorMessage = "Error in saving city.";
+          this.errorMessage = response.message;
+          this.newCity = {} as SearchCity;
         }
 
         this.loadCities();
@@ -89,5 +92,6 @@ export class CityComponent implements OnInit {
 
   reset() {
     this.errorMessage = '';
+    this.search = '';
   }
 }
