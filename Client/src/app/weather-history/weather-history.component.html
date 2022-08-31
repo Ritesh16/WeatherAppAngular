@@ -46,7 +46,7 @@
             <img alt="_photo" src="http://openweathermap.org/img/w/{{weatherHistory.icon}}.png" />  {{weatherHistory.main}}
           </div>
         </td>
-        <td>{{weatherHistory.description}}</td>
+        <td>{{weatherHistory.description | titlecase}}</td>
         <td>
           <a class="card-link" [routerLink] = "['/city', weatherHistory.cityId, 'weather-history', weatherHistory.date]">Details</a>
         </td>

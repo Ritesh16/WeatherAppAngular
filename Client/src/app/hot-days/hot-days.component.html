@@ -9,7 +9,7 @@
         <tbody>
           <tr *ngIf="hottestDay && hottestDay.value > 0">
             <th scope="row"><a class="card-link" [routerLink] = "['/city', selectedCity.cityId, 'weather-history', hottestDay.date]">{{hottestDay.date|date}}</a></th>
-            <td>{{hottestDay.value}}</td>
+            <td>{{hottestDay.value}}°F</td>
           </tr>
         </tbody>
       </table>
@@ -23,7 +23,7 @@
       <tbody>
         <tr *ngFor="let hotDay of topHotDays">
           <th scope="row"><a class="card-link" [routerLink] = "['/city', selectedCity.cityId, 'weather-history', hotDay.date]">{{hotDay.date|date}}</a></th>
-          <td>{{hotDay.value}}</td>
+          <td>{{hotDay.value}}°F</td>
         </tr>
       </tbody>
     </table>

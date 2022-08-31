@@ -10,7 +10,7 @@
               </h4>
               <h4 class="card-title">
                 <img alt="_photo" src="http://openweathermap.org/img/w/{{weather.weatherModel.current.weather[0].icon}}.png">
-                <span>{{weather.weatherModel.current.temp }}°F</span>  <span style="margin-left:10px"> {{weather.weatherModel.current.weather[0].description}}</span>
+                <span>{{weather.weatherModel.current.temp }}°F</span>  <span style="margin-left:10px"> {{weather.weatherModel.current.weather[0].description|titlecase}}</span>
               </h4>
               <h6 class="card-subtitle mb-2 text-muted">Feels like {{weather.weatherModel.current.feels_like }}°F</h6>
               <div>
