@@ -11,7 +11,7 @@
             </span>
             <span style="min-width: 350px;  display: inline-block; text-align:center"> 
               <img alt="_photo" src="http://openweathermap.org/img/w/{{daily.weather[0].icon}}.png" />
-              <span>{{daily.weather[0].description}}</span>
+              <span>{{daily.weather[0].description | titlecase}}</span>
             </span>
             <span style="min-width:270px;  display: inline-block; text-align:left">Cloud cover  {{daily.clouds | convertToPerc }}</span>
             <span style="min-width:250px;  display: inline-block; text-align:left">
