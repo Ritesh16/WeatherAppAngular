@@ -40,7 +40,7 @@
     <tbody>
       <tr *ngFor="let weatherHistory of weatherHistoryList">
         <th scope="row">{{weatherHistory.date | date}}</th>
-        <td>{{weatherHistory.max}}/{{weatherHistory.min}}°F</td>
+        <td>{{weatherHistory.max}}/{{weatherHistory.min|convertToTemp}}</td>
         <td>
           <div>
             <img alt="_photo" src="http://openweathermap.org/img/w/{{weatherHistory.icon}}.png" />  {{weatherHistory.main}}

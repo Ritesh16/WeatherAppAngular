@@ -34,6 +34,7 @@ import { RainyDaysComponent } from './rainy-days/rainy-days.component';
 import { ColdDaysComponent } from './cold-days/cold-days.component';
 import { HotDaysComponent } from './hot-days/hot-days.component';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { ConvertToTempPipe } from './_pipes/convert-to-temp.pipe';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
     CloudyDaysComponent,
     RainyDaysComponent,
     ColdDaysComponent,
-    HotDaysComponent
+    HotDaysComponent,
+    ConvertToTempPipe
   ],
   imports: [
     BrowserModule,
